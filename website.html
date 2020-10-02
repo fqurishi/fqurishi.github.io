@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Faisl Qurishi</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body { height:100%; font-family: "Lato", sans-serif, background-color: #black;}
+.tablink { background-color: #000; color: white; }
+.tablink:hover { background-color: #3E3D3D; }
+#PROJECTS {background-color: black;}
+#CONTACT {background-color: black;}
+#ABOUT {background-color: black;}
+#HOME {background-color: black;}
+
+/* background */
+.bg {
+
+  height: 100%;
+  width: 100%;
+
+  /* Center and scale the image nicely */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+}
+</style>
+<body style="background-color: black;">
+<div class = "w3-black">
+
+<!-- Navbar  -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"></a>
+	<button class="tablink" onclick="openPage('home', this)" id="defaultOpen">HOME</button>
+	<button class="tablink" onclick="openPage('about', this)">ABOUT</button>
+	<button class="tablink" onclick="openPage('projects', this)">PROJECTS</button>
+	<button class="tablink" onclick="openPage('contact', this)">CONTACT</button>
+  </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#projects" class="w3-bar-item w3-button w3-padding-large" onclick="openPage('projects', this, 'red')">PROJECTS</a>
+  <a href="#about" class="w3-bar-item w3-button w3-padding-large" onclick="openPage('about', this, 'blue')">ABOUT</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="openPage('contact', this, 'orange')">CONTACT</a>
+</div>
+
+<!-- Page content -->
+
+
+  <!-- The Home Section -->
+ <div id="home" class="tabcontent">
+<div class="bg">
+<img src="/images/background.jpg" class="bg" alt="Faisl Qurishi">
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Faisl <span class="w3-hide-small">Qurishi</span></span>
+  </div>
+</div>
+</div>
+
+  <!-- The ABOUT Section -->
+  <div id="about" class="tabcontent">
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px">
+    <h2 class="w3-wide">ABOUT</h2>
+	<h5 class="w3-wide">Faisl Qurishi</h5>
+	<p class="w3-opacity"><i>Software Developer</i></p>
+	<br>
+    <img src="/images/faislqurishi.jpg" class="w3-round" alt="Faisl Qurishi" style="width:100%">
+	<br>
+    <p class="w3-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
+      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+  </div>
+
+  <!-- The PROJECTS Section -->
+  <div id="projects" class="tabcontent">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">PROJECTS</h2>
+      <p class="w3-opacity w3-center"><i>A look at some of my projects</i></p><br>
+      <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+        <div class="w3-third w3-margin-bottom">
+		  <a href="https://github.com/fqurishi/BreakOut-Cplusplus">
+          <img src="/images/breakout.gif" alt="BreakOut" style="width:100%" class="w3-hover-opacity">
+		  </a>
+          <div class="w3-container w3-white">
+            <p><b>BreakOut</b></p>
+            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+		  <a href="https://github.com/fqurishi/OutBreak">
+          <img src="/images/outbreak.gif" alt="OutBreak" style="width:100%" class="w3-hover-opacity">
+		  </a>
+          <div class="w3-container w3-white">
+            <p><b>OutBreak</b></p>
+            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+          </div>
+        </div>
+		<div class="w3-third w3-margin-bottom">
+		  <a href="https://github.com/fqurishi/OpenGLJava">
+          <img src="/images/JavaOpenGL.gif" alt="JavaOpenGL" style="width:100%" class="w3-hover-opacity">
+		  </a>
+          <div class="w3-container w3-white">
+            <p><b>OpenGL in Java</b></p>
+            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Contact Section -->
+  <div id="contact" class="tabcontent">
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+    <h2 class="w3-wide w3-center">CONTACT</h2>
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker" style="width:30px"></i> Tracy, California USA<br>
+        <i class="fa fa-phone" style="width:30px"></i> Phone: +1 925-339-1525<br>
+        <i class="fa fa-envelope" style="width:30px"> </i> Email: faislqurishi@gmail.com<br>
+	  </div>
+  </div>
+  </div>
+  
+<!-- End Page Content -->
+</div>
+<script>
+// Used to toggle the menu
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("w3-bar-item w3-button w3-padding-large w3-hide-small");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+</script>
+
+</body>
+</html>
