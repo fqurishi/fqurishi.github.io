@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<title>Projects</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" type="image/ico" href="https://raw.githubusercontent.com/fqurishi/fqurishi.github.io/master/images/icon.ico">
+<style>
+body { height:100%; font-family: "Lato", sans-serif, background-color: #black;}
+.tablink { background-color: #000; color: white; }
+.tablink:hover { background-color: #3E3D3D; }
+#PROJECTS {background-color: black;}
+#CONTACT {background-color: black;}
+#ABOUT {background-color: black;}
+#HOME {background-color: black;}
+
+/* background */
+.bg {
+
+		height: 100%;
+		width: 100%;
+
+		/* Center and scale the image nicely */
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+</style>
+<body style="background-color: black;">
+<div class = "w3-black">
+
+<!-- Navbar  -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"></a>
+	<button class="tablink" onclick="window.location.href='../index.html';">HOME</button>
+	<button class="tablink" onclick="window.location.href='About.html';">ABOUT</button>
+	<button class="tablink" onclick="window.location.href='Projects.html';">PROJECTS</button>
+	<button class="tablink" onclick="window.location.href='Contact.html';">CONTACT</button>
+  </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#home" class="w3-bar-item w3-button w3-padding-large" onclick="window.location.href='../index.html';">HOME</a>
+  <a href="#projects" class="w3-bar-item w3-button w3-padding-large" onclick="window.location.href='Projects.html';">PROJECTS</a>
+  <a href="#about" class="w3-bar-item w3-button w3-padding-large" onclick="window.location.href='About.html';">ABOUT</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="window.location.href='Contact.html';">CONTACT</a>
+</div>
+
+<!-- Page content -->
+
+<!-- The PROJECTS Section -->
+  <div id="projects" class="tabcontent">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">PROJECTS</h2>
+      <p class="w3-opacity w3-center"><i>A look at some of my projects, (click to see their repos)</i></p><br>
+      <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+        <div class="w3-third w3-margin-bottom">
+		  <a href="https://github.com/fqurishi/SkyLoomi">
+          <img src="../images/skyLoomi.gif" alt="SkyLoomi" style="width:100%" class="w3-hover-opacity">
+		  </a>
+          <div class="w3-container w3-white">
+            <p><b>SkyLoomi</b></p>
+            <p>Created an audio file player with using Python with SQLITE. GUI created using tkinter.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+		  <a href="https://github.com/fqurishi/OutBreak">
+          <img src="../images/outbreak.gif" alt="OutBreak" style="width:100%" class="w3-hover-opacity">
+		  </a>
+          <div class="w3-container w3-white">
+            <p><b>OutBreak</b></p>
+            <p>Created my original 8bit retro styled game using C++ with the SFML library, sound included.</p>
+          </div>
+        </div>
+		<div class="w3-third w3-margin-bottom">
+		  <a href="https://github.com/fqurishi/OpenGLJava">
+          <img src="../images/JavaOpenGL.gif" alt="JavaOpenGL" style="width:100%" class="w3-hover-opacity">
+		  </a>
+          <div class="w3-container w3-white">
+            <p><b>OpenGL in Java</b></p>
+            <p>A showcase of graphics programming in OpenGl using Java. Tesselation, bump mapping, lights/shadows and other features included.</p>
+          </div>
+        </div>
+		<div class="w3-third w3-margin-bottom">
+		  <a href="https://github.com/fqurishi/OpenGLCplusplus">
+          <img src="../images/OpenGL.gif" alt="OpenGL" style="width:100%" class="w3-hover-opacity">
+		  </a>
+          <div class="w3-container w3-white">
+            <p><b>OpenGL in C++</b></p>
+            <p>A showcase of graphics programming in OpenGl using C++. Camera controls operated with mouse movement.</p>
+          </div>
+        </div>
+		<div class="w3-third w3-margin-bottom">
+		  <a href="https://github.com/fqurishi/DolphinContest">
+          <img src="../images/dolphincontest.gif" alt="DolphinContest" style="width:100%" class="w3-hover-opacity">
+		  </a>
+          <div class="w3-container w3-white">
+            <p><b>Dolphin Contest</b></p>
+            <p>A 2 player splitscreen game using Java. 3rd person camera implemented alongside gamepad inputs.</p>
+          </div>
+        </div>
+		<div class="w3-third w3-margin-bottom">
+		  <a href="https://github.com/fqurishi/fqurishi.github.io">
+          <img src="../images/website.png" alt="Website" style="width:100%" class="w3-hover-opacity">
+		  </a>
+          <div class="w3-container w3-white">
+            <p><b>My Personal Website</b></p>
+            <p>Written in html using W3.CSS and javascript.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!-- End Page Content -->
+</div>
+
+</body>
+</html>

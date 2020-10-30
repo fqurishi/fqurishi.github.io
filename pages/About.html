@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<title>About</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" type="image/ico" href="https://raw.githubusercontent.com/fqurishi/fqurishi.github.io/master/images/icon.ico">
+<style>
+body { height:100%; font-family: "Lato", sans-serif, background-color: #black;}
+.tablink { background-color: #000; color: white; }
+.tablink:hover { background-color: #3E3D3D; }
+#PROJECTS {background-color: black;}
+#CONTACT {background-color: black;}
+#ABOUT {background-color: black;}
+#HOME {background-color: black;}
+
+/* background */
+.bg {
+
+		height: 100%;
+		width: 100%;
+
+		/* Center and scale the image nicely */
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+</style>
+<body style="background-color: black;">
+<div class = "w3-black">
+
+<!-- Navbar  -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"></a>
+	<button class="tablink" onclick="window.location.href='../index.html';">HOME</button>
+	<button class="tablink" onclick="window.location.href='About.html';">ABOUT</button>
+	<button class="tablink" onclick="window.location.href='Projects.html';">PROJECTS</button>
+	<button class="tablink" onclick="window.location.href='Contact.html';">CONTACT</button>
+  </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#home" class="w3-bar-item w3-button w3-padding-large" onclick="window.location.href='../index.html';">HOME</a>
+  <a href="#projects" class="w3-bar-item w3-button w3-padding-large" onclick="window.location.href='Projects.html';">PROJECTS</a>
+  <a href="#about" class="w3-bar-item w3-button w3-padding-large" onclick="window.location.href='About.html';">ABOUT</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="window.location.href='Contact.html';">CONTACT</a>
+</div>
+
+<!-- Page content -->
+
+ <!-- The ABOUT Section -->
+  <div id="about" class="tabcontent">
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px">
+    <h2 class="w3-wide">ABOUT</h2>
+	<h5 class="w3-wide">Faisl Qurishi</h5>
+	<p class="w3-opacity"><i>Software Developer</i></p>
+	<br>
+    <img src="../images/faislqurishi.jpg" class="w3-round" alt="Faisl Qurishi" style="width:100%">
+	<br>
+    <p class="w3-justify">Hello welcome to my personal website, I am a software devolper with a strong passion for game programming.
+	I am currently a student at California State Sacramento graduating in Fall 2020.
+	I enjoy being challenged and engaging in projects that require me to use my knowledge. 
+	I work with C, C++, Java and am knowledgable in Python. I continue to learn new languages while I create projects. 
+	I am familiar with MS Visual Studio, Eclipse, Android Studio, and UnReal Engine.
+	Feel free to look around on my site and contact me.
+	</p>
+  </div>
+  </div>
+
+
+
+
+<!-- End Page Content -->
+</div>
+
+</body>
+</html>
