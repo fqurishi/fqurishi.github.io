@@ -54,7 +54,7 @@ class BasicCharacterController {
   _LoadModels() {
     const loader = new FBXLoader();
     loader.setPath('./resources/player/');
-    loader.load('swat1.fbx', (fbx) => {
+    loader.load('swat.fbx', (fbx) => {
       fbx.scale.setScalar(0.1);
       fbx.traverse(c => {
         c.castShadow = true;
