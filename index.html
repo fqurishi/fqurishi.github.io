@@ -36,18 +36,11 @@ body { height:100%; font-family: "Lato", sans-serif, "background-color: #black;"
   <div class="w3-bar w3-black w3-card">
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"></a>
 	<button class="tablink" onclick="openPage('home', this)" id="defaultOpen">HOME</button>
-	<button class="tablink" onclick="openPage('about', this)">ABOUT</button>
-	<button class="tablink" onclick="openPage('projects', this)">PROJECTS</button>
-	<button class="tablink" onclick="openPage('contact', this)">CONTACT</button>
+	<button class="tablink" onclick="https://faislqurishi.dev/pages/About">ABOUT</button>
+	<button class="tablink" onclick="https://faislqurishi.dev/pages/Projects">PROJECTS</button>
+	<button class="tablink" onclick="https://faislqurishi.dev/pages/Contact">CONTACT</button>
 	<button class="tablink" onclick="https://faislqurishi.dev/pages/game">GAME</button>
   </div>
-</div>
-
-<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
-<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-  <a href="#projects" class="w3-bar-item w3-button w3-padding-large" onclick="openPage('projects', this, 'red')">PROJECTS</a>
-  <a href="#about" class="w3-bar-item w3-button w3-padding-large" onclick="openPage('about', this, 'blue')">ABOUT</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="openPage('contact', this, 'orange')">CONTACT</a>
 </div>
 
 <!-- Page content -->
@@ -63,100 +56,7 @@ body { height:100%; font-family: "Lato", sans-serif, "background-color: #black;"
 </div>
 </div>
 
-  <!-- The ABOUT Section -->
-  <div id="about" class="tabcontent">
-  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px">
-    <h2 class="w3-wide">ABOUT</h2>
-	<h5 class="w3-wide">Faisl Qurishi</h5>
-	<p class="w3-opacity"><i>Software Developer</i></p>
-	<br>
-    <img src="/images/faislqurishi.jpg" class="w3-round" alt="Faisl Qurishi" style="width:100%">
-	<br>
-    <p class="w3-justify">Hello welcome to my personal website, I am a software devolper with a strong passion for game programming.
-	I am currently a student at California State Sacramento graduating in Fall 2020.
-	I enjoy being challenged and engaging in projects that require me to use my knowledge. 
-	I work with C, C++, Java and am knowledgable in Python. I continue to learn new languages while I create projects. 
-	I am familiar with MS Visual Studio, Eclipse, Android Studio, and UnReal Engine.
-	Feel free to look around on my site and contact me.
-	</p>
-  </div>
-  </div>
 
-  <!-- The PROJECTS Section -->
-  <div id="projects" class="tabcontent">
-    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-      <h2 class="w3-wide w3-center">PROJECTS</h2>
-      <p class="w3-opacity w3-center"><i>A look at some of my projects, (click to see their repos)</i></p><br>
-      <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
-        <div class="w3-third w3-margin-bottom">
-		  <a href="https://github.com/fqurishi/SkyLoomi">
-          <img src="/images/skyLoomi.gif" alt="SkyLoomi" style="width:100%" class="w3-hover-opacity">
-		  </a>
-          <div class="w3-container w3-white">
-            <p><b>SkyLoomi</b></p>
-            <p>Created an audio file player with using Python with SQLITE. GUI created using tkinter.</p>
-          </div>
-        </div>
-        <div class="w3-third w3-margin-bottom">
-		  <a href="https://github.com/fqurishi/OutBreak">
-          <img src="/images/outbreak.gif" alt="OutBreak" style="width:100%" class="w3-hover-opacity">
-		  </a>
-          <div class="w3-container w3-white">
-            <p><b>OutBreak</b></p>
-            <p>Created my original 8bit retro styled game using C++ with the SFML library, sound included.</p>
-          </div>
-        </div>
-		<div class="w3-third w3-margin-bottom">
-		  <a href="https://github.com/fqurishi/OpenGLJava">
-          <img src="/images/JavaOpenGL.gif" alt="JavaOpenGL" style="width:100%" class="w3-hover-opacity">
-		  </a>
-          <div class="w3-container w3-white">
-            <p><b>OpenGL in Java</b></p>
-            <p>A showcase of graphics programming in OpenGl using Java. Tesselation, bump mapping, lights/shadows and other features included.</p>
-          </div>
-        </div>
-		<div class="w3-third w3-margin-bottom">
-		  <a href="https://github.com/fqurishi/OpenGLCplusplus">
-          <img src="/images/OpenGL.gif" alt="OpenGL" style="width:100%" class="w3-hover-opacity">
-		  </a>
-          <div class="w3-container w3-white">
-            <p><b>OpenGL in C++</b></p>
-            <p>A showcase of graphics programming in OpenGl using C++. Camera controls operated with mouse movement.</p>
-          </div>
-        </div>
-		<div class="w3-third w3-margin-bottom">
-		  <a href="https://github.com/fqurishi/DolphinContest">
-          <img src="/images/dolphincontest.gif" alt="DolphinContest" style="width:100%" class="w3-hover-opacity">
-		  </a>
-          <div class="w3-container w3-white">
-            <p><b>Dolphin Contest</b></p>
-            <p>A 2 player splitscreen game using Java. 3rd person camera implemented alongside gamepad inputs.</p>
-          </div>
-        </div>
-		<div class="w3-third w3-margin-bottom">
-		  <a href="https://github.com/fqurishi/fqurishi.github.io">
-          <img src="/images/website.png" alt="Website" style="width:100%" class="w3-hover-opacity">
-		  </a>
-          <div class="w3-container w3-white">
-            <p><b>My Personal Website</b></p>
-            <p>Written in html using W3.CSS and javascript.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- The Contact Section -->
-  <div id="contact" class="tabcontent">
-  <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-    <h2 class="w3-wide w3-center">CONTACT</h2>
-      <div class="w3-col m6 w3-large w3-margin-bottom">
-        <i class="fa fa-map-marker" style="width:30px"></i> Tracy, California USA<br>
-        <i class="fa fa-phone" style="width:30px"></i> Phone: +1 925-339-1525<br>
-        <i class="fa fa-envelope" style="width:30px"> </i> <a href="mailto:faislqurishi@gmail.com">Email: faislqurishi@gmail.com </a><br>
-	  </div>
-  </div>
-  </div>
   
 <!-- End Page Content -->
 </div>
