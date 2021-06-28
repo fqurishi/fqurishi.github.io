@@ -1,8 +1,16 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js';
+import {player} from './Player.js'
+import {bullet} from './Bullet.js'
+import {zombie} from './Zombie.js'
 
             let scene, camera, renderer;
             const startButton = document.getElementById('startButton');
             startButton.addEventListener('click', init);
+            let player1 = new player.Player();
+            let bullet1;
+            let zombie1;
+            let bulletObjects = new Array();
+            let zombieObjects = new Array();
             
             function init() {
                 const overlay = document.getElementById( 'overlay' );
@@ -76,88 +84,133 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.mod
                 const tex6 = new THREE.TextureLoader().load( './resources/pCJump.png' );
                 const tex7 = new THREE.TextureLoader().load( './resources/pCJump2.png' );
                 const tex8 = new THREE.TextureLoader().load( './resources/pCWalk.png' );
-                const tex9 = new THREE.TextureLoader().load( './resources/zombie.png' );
-                const tex10 = new THREE.TextureLoader().load( './resources/zombieWalk.png' );
 
                 //sprite loading
                 const mBackground = new THREE.SpriteMaterial( {map: tex1} );
                 const bgSprite = new THREE.Sprite(mBackground);
                 bgSprite.scale.set(48,36,1);
 
-                let mPlayer = new THREE.SpriteMaterial ( {map: tex3});
-			    const sprite1 = new THREE.Sprite( mPlayer);
-			    sprite1.position.set( 1, 0, 0 );
-                sprite1.scale.set(5,4,1);
+                //load player
+                player1.setLeft(1);
+                player1.getSprite().position.set( 1, 0, 0);
+                player1.getSprite().scale.set(5,4,1);
+                player1.setTexture(tex3);
                 scene.add(bgSprite);
-                scene.add(sprite1);
+                scene.add(player1.getSprite());
 
-                //variables
-                let isLeft = true;
-                let isRight = false;
+                //load zombies
+                //create zombies and set them up
+                for(let i=0;i<10;i++){
+                    zombie1 = new zombie.Zombie();
+		            //give zombies their texture
+                    zombie1.getSprite().position.setX(1);
+                    zombie1.getSprite().scale.set(5,4,1);
+		            //make sure zombies dont spawn on players position
+                    if(zombie1.getX() == player1.getX() && zombie1.getY() == player1.getY()){
+                        zombie1.setX(Math.floor(Math.random() * 43)-21.5);
+                    }
+		            //put the zombies into the zombie list
+                    zombieObjects.push(zombie1);
+                    scene.add(zombie1.getSprite());
+                }
+
 
                 window.addEventListener( 'keydown', function ( event ) {
                     switch ( event.key) {
                         case 'w': // w
                         case 'ArrowUp': //up
-                            if(ladderUpCollision(sprite1.position.z,sprite1.position.y) == true){
-                                sprite1.translateY(1);
-                                if (sprite1.material.map == tex6){
-                                    sprite1.material.map = tex7;
+                            if(ladderUpCollision(player1.getSprite().position.z,player1.getSprite().position.y) == true){
+                                player1.setUp(1);
+                                player1.update();
+                                if (player1.getTexture() == tex6){
+                                    player1.setTexture(tex7);
                                 }else{
-                                    sprite1.material.map = tex6;
+                                    player1.setTexture(tex6);
                                 }
                                 s4.play();
                             }
-                            console.log(sprite1.position);
-                            console.log(ladderUpCollision(sprite1.position.z,sprite1.position.y))
+                            console.log(player1.getSprite().position);
+                            console.log(ladderUpCollision(player1.getSprite().position.z,player1.getSprite().position.y))
                             break;
                         case 'a': // a
                         case 'ArrowLeft': //left
-                            if(usingLadder(sprite1.position.y) == false){
-                                sprite1.translateZ(1);
-                                isRight = false;
-                                isLeft = true;
-                                if (sprite1.material.map == tex3){
-                                    sprite1.material.map = tex8;
+                            if(usingLadder(player1.getSprite().position.y) == false){
+                                player1.setLeft(1);
+                                player1.update();
+                                if (player1.getTexture() == tex3 || player1.getTexture() == tex4){
+                                    player1.setTexture(tex8);
                                     s1.play();
                                 }else{
-                                    sprite1.material.map = tex3;
+                                    player1.setTexture(tex3);
                                     s2.play();
                                 }
-                                setPlayerFloor(sprite1, sprite1.position.y);
                             }
                             break;
                         case 's': // s
                         case 'ArrowDown': //down
-                            if(ladderDownCollision(sprite1.position.z,sprite1.position.y) == true){
-                                sprite1.translateY(-1);
-                                if (sprite1.material.map == tex6){
-                                    sprite1.material.map = tex7;
+                            if(ladderDownCollision(player1.getSprite().position.z,player1.getSprite().position.y) == true){
+                                player1.setDown(1);
+                                player1.update();
+                                if (player1.getTexture()== tex6){
+                                    player1.setTexture(tex7);
                                 }else{
-                                    sprite1.material.map = tex6;
+                                    player1.setTexture(tex6);
                                 }
                                 s4.play();
                             }
-                            console.log(sprite1.position);
+                            console.log(player1.getSprite().position);
                             break;
                         case 'd': // d
                         case 'ArrowRight': //right
-                            if(usingLadder(sprite1.position.y) == false){
-                                sprite1.translateZ(-1);
-                                isRight = true;
-                                isLeft = false;
-                                if (sprite1.material.map == tex3){
-                                    sprite1.material.map = tex8;
+                            if(usingLadder(player1.getSprite().position.y) == false){
+                                player1.setRight(1);
+                                player1.update()
+                                if (player1.getTexture() == tex3 || player1.getTexture() == tex4){
+                                    player1.setTexture(tex8);
                                     s1.play();
                                 }else{
-                                    sprite1.material.map = tex3;
+                                    player1.setTexture(tex3);
                                     s2.play();
                                 }
                             }
                             break;
                         case ' ': //space
-                            sprite1.material.map = tex4;
-                            s3.play();
+                            if(player1.getAmmo() != 0){
+                                let y;
+                                if(player1.getTexture() == tex3 || player1.getTexture() == tex4){
+                                    player1.setTexture(tex4);
+                                    y = 0.65;
+                                }
+                                else if(player1.getTexture() == tex8 || player1.getTexture() == tex5){
+                                    player1.setTexture(tex5);
+                                    y = 0.6;
+                                }
+                                if(player1.getRight()){
+                                    s3.play();
+                                    bullet1 = new bullet.Bullet(player1.getSprite().position.z-0.75,player1.getSprite().position.y+y);
+                                    bullet1.getSprite().position.setX(1);
+                                    bullet1.getSprite().scale.set(0.2,0.1,1);
+                                    bullet1.setTexture(tex2);
+                                    bulletObjects.push(bullet1);
+                                    scene.add(bullet1.getSprite());
+                                    bullet1.setRight(1);
+                                    bullet1.update();
+
+                                }
+                                else if(player1.getLeft){
+                                    s3.play()
+                                    bullet1 = new bullet.Bullet(player1.getSprite().position.z+0.75,player1.getSprite().position.y+y);
+                                    bullet1.getSprite().position.setX(1);
+                                    bullet1.getSprite().scale.set(0.2,0.1,1);
+                                    bullet1.setTexture(tex2);
+                                    bulletObjects.push(bullet1);
+                                    scene.add(bullet1.getSprite());
+                                    bullet1.setLeft(1);
+                                    bullet1.update();
+                                }
+                                player1.shotGun();
+                                console.log(bullet1.getSprite().position);
+                            }
 
 
                     }
@@ -166,30 +219,23 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.mod
 
             //animate
             const animate = function () {
-				requestAnimationFrame( animate );
-                if(isLeft == true){
-                    sprite1.material.map.center.set( 0.5, 0.5 );
-                    sprite1.material.map.repeat.set( 1, 1 );
+                requestAnimationFrame(animate);
+                player1.updateDirection();
+                for(let object of bulletObjects){
+                    object.update();
                 }
-                else if(isRight == true){
-                    sprite1.material.map.center.set( 0.5, 0.5 );
-                    sprite1.material.map.repeat.set( -1, 1 );
+                for(let object of zombieObjects){
+                    object.update();
+                    object.updateDirection();
+                    object.setState(!object.getState());
+                    console.log(object.getState());
                 }
-                setPlayerFloor(sprite1,sprite1.position.y);
-                setPlayerBounds(sprite1, sprite1.position.z)
+                setSpriteFloor(player1.getSprite(),player1.getSprite().position.y);
 				renderer.render( scene, camera );
 			};
 
-            const setPlayerBounds = function(sprite, x){
-                if (x > 21.5){
-                    sprite.position.setZ(21.5);
-                }
-                else if (x < -21.5){
-                    sprite.position.setZ(-21.5);
-                }
-            }
 
-            const setPlayerFloor = function(sprite, y){
+            const setSpriteFloor = function(sprite, y){
                 //get y positions of all floors
                 const firstFloor=-7, secondFloor=-0.3, thirdFloor=6.5, fourthFloor=13.2, groundFloor=-14;
                 if(y >= fourthFloor){
