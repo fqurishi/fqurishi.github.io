@@ -25,7 +25,7 @@ export const zombie = (() => {
             this.setR(15);
             this.setY(floor[Math.floor(Math.random() * 5)])
             this.setLeft(Math.floor(Math.random() * 2));
-            this.setSpeed(0.1);
+            this.setSpeed(0.5);
             this.setRespawn(0);
             this.setX(Math.floor(Math.random() * 43)-21.5);
             this.setState(0);

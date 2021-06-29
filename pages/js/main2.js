@@ -11,6 +11,8 @@ import {zombie} from './Zombie.js'
             let zombie1;
             let bulletObjects = new Array();
             let zombieObjects = new Array();
+            let lastRender = 0;
+            let p = 0;
             
             function init() {
                 const overlay = document.getElementById( 'overlay' );
@@ -217,21 +219,33 @@ import {zombie} from './Zombie.js'
                 }
                 );
 
+            //game tick
+            const tick = function(progress){
+                p += progress;
+                if(p > 200){
+                    for(let object of zombieObjects){
+                        object.update();
+                        object.updateDirection();
+                        object.setState(!object.getState());
+                        console.log("ticked");
+                    }
+                    p = 0;
+                }
+            }
+
             //animate
-            const animate = function () {
-                requestAnimationFrame(animate);
+            const animate = function (timestamp) {
+                let progress = timestamp - lastRender;
                 player1.updateDirection();
                 for(let object of bulletObjects){
                     object.update();
                 }
-                for(let object of zombieObjects){
-                    object.update();
-                    object.updateDirection();
-                    object.setState(!object.getState());
-                    console.log(object.getState());
-                }
+                tick(progress);
+                lastRender = timestamp;
                 setSpriteFloor(player1.getSprite(),player1.getSprite().position.y);
 				renderer.render( scene, camera );
+                console.log(progress);
+                requestAnimationFrame(animate);
 			};
 
 
@@ -356,7 +370,7 @@ import {zombie} from './Zombie.js'
                 }
             }
 
-            animate();
+            animate(1);
         }
 
 		
