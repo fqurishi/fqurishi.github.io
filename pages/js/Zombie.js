@@ -75,9 +75,21 @@ export const zombie = (() => {
         setState(a){
             this.#state = a;
         }
+        setSpawnPoint(){
+            let floor = [-7, -0.3, 6.5, 13.2, -14];
+            let entry = [22, -22];
+            this.setX(entry[Math.floor(Math.random() * 2)]);
+            if(this.getX() == 22){
+                this.setRight(1);
+            }
+            else{
+                this.setLeft(1);
+            }
+            this.setY(floor[Math.floor(Math.random() * 5)]);
+        }
         update(){
             if(this.getLeft()){
-                if(this.getX() < 22){
+                if(this.getX() < 23){
                     this.translateX(this.getSpeed());
                 }
                 else{
@@ -85,7 +97,7 @@ export const zombie = (() => {
                 }
             }
             else if(this.getRight()){
-                if(this.getX() > -22){
+                if(this.getX() > -23){
                     this.translateX(-(this.getSpeed()));
                 }
                 else{
@@ -108,7 +120,6 @@ export const zombie = (() => {
                 this.getTexture().center.set( 0.5, 0.5 );
                 this.getTexture().repeat.set( -1, 1 );
             }
-            console.log(this.getLeft());
         }
 
     };

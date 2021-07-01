@@ -14,6 +14,7 @@ export const player = (() => {
         #health;
         #isLeft;
         #isRight;
+        #pressedKeys;
         constructor(){
             super();
             this.#left = true;
@@ -24,10 +25,26 @@ export const player = (() => {
             this.#height = null;
             this.#ammo = 9;
             this.#health = 15;
+            this.#pressedKeys = {left: false, right: false, up: false, down: false, space: false};
             this.setX(1);
             this.setY(0);
             this.setName("Player");
             this.setR(10);
+        }
+        getKeyPressRight(){
+            return this.#pressedKeys['right'];
+        }
+        getKeyPressUp(){
+            return this.#pressedKeys['up'];
+        }
+        getKeyPressDown(){
+            return this.#pressedKeys['down'];
+        }
+        getKeyPressLeft(){
+            return this.#pressedKeys['left'];
+        }
+        getKeyPressSpace(){
+            return this.#pressedKeys['space'];
         }
 
         getLeft(){
@@ -82,28 +99,51 @@ export const player = (() => {
             this.#up = !a;
             this.#down = a;
         }
+        shootGun(){
+            this.#pressedKeys['space'] = true;
+            this.#ammo = this.getAmmo() - 1;
+
+        }
         damaged(a){
             this.#health = this.#health - a;
         }
         shotGun(){
-            this.#ammo = this.getAmmo() - 1;
+            this.#pressedKeys['space'] = false;
+        }
+        setKeysOff(){
+            this.#pressedKeys['right'] = false;
+            this.#pressedKeys['left'] = false;
+            this.#pressedKeys['down'] = false;
+            this.#pressedKeys['up'] = false;
         }
         update(){
             if(this.getRight()){
                 if(this.getX() > -21){
-                    this.translateX(-1);
+                    this.#pressedKeys['right'] = true;
+                    this.#pressedKeys['left'] = false;
+                    this.#pressedKeys['down'] = false;
+                    this.#pressedKeys['up'] = false;
                 }
             }
             else if(this.getLeft()){
                 if(this.getX() < 21){
-                    this.translateX(+1);
+                    this.#pressedKeys['right'] = false;
+                    this.#pressedKeys['left'] = true;
+                    this.#pressedKeys['down'] = false;
+                    this.#pressedKeys['up'] = false;
                 }
             }
             else if(this.getUp()){
-                this.translateY(+1);
+                this.#pressedKeys['right'] = false;
+                this.#pressedKeys['left'] = false;
+                this.#pressedKeys['down'] = false;
+                this.#pressedKeys['up'] = true;
             }
             else if(this.getDown()){
-                this.translateY(-1);
+                this.#pressedKeys['right'] = false;
+                this.#pressedKeys['left'] = false;
+                this.#pressedKeys['down'] = true;
+                this.#pressedKeys['up'] = false;
             }
 
         }
