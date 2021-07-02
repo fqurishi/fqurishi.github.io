@@ -7,6 +7,8 @@ export const zombie = (() => {
     class Zombie extends gameobject.GameObject{
         #left;
         #right;
+        #up;
+        #down;
         #respawn;
         #width;
         #height;
@@ -15,6 +17,7 @@ export const zombie = (() => {
         #isRight;
         #textures;
         #state;
+        #RightOrLeft
         constructor(){
             super();
             const tex9 = new THREE.TextureLoader().load( './resources/zombie.png' );
@@ -22,14 +25,18 @@ export const zombie = (() => {
             let floor = [-7, -0.3, 6.5, 13.2, -14];
             this.#textures = [tex9, tex10];
             this.setName("Zombie");
-            this.setR(15);
+            this.setR(2);
             this.setY(floor[Math.floor(Math.random() * 5)])
             this.setLeft(Math.floor(Math.random() * 2));
+            this.#RightOrLeft = Math.floor(Math.random() * 2);
             this.setSpeed(0.5);
             this.setRespawn(0);
             this.setX(Math.floor(Math.random() * 43)-21.5);
             this.setState(0);
             this.setTexture(this.#textures[Math.floor(Math.random() * 2)]);
+        }
+        getRightOrLeft(){
+            return this.#RightOrLeft;
         }
         getState(){
             return this.#state;
@@ -39,6 +46,12 @@ export const zombie = (() => {
         }
         getRight(){
             return this.#right;
+        }
+        getUp(){
+            return this.#up;
+        }
+        getDown(){
+            return this.#down;
         }
         getRespawn(){
             return this.#respawn;
@@ -55,6 +68,8 @@ export const zombie = (() => {
         setLeft(a){
             this.#left = a;
             this.#right = !a;
+            this.#up = !a;
+            this.#down = !a;
             this.#isLeft = a;
             this.#isRight = !a;
 
@@ -62,9 +77,29 @@ export const zombie = (() => {
         setRight(a){
             this.#left = !a;
             this.#right = a;
+            this.#up = !a;
+            this.#down = !a;
             this.#isLeft = !a;
             this.#isRight = a;
 
+        }
+        setUp(a){
+            this.#left = !a;
+            this.#right = !a;
+            this.#up = a;
+            this.#down = !a;
+
+        }
+        setDown(a){
+            this.#left = !a;
+            this.#right = !a;
+            this.#up = !a;
+            this.#down = a;
+
+        }
+        setLadderOff(){
+            this.#up = false;
+            this.#down = false;
         }
         setSpeed(a){
             this.#speed = a;
@@ -103,6 +138,12 @@ export const zombie = (() => {
                 else{
                     this.setRespawn(1);
                 }
+            }
+            else if(this.getUp()){
+                this.translateY(this.getSpeed());
+            }
+            else if(this.getDown()){
+                this.translateY(-(this.getSpeed()));
             }
             if(this.getState() == 0){
                 this.setTexture(this.#textures[0]);

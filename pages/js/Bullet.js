@@ -12,7 +12,7 @@ export const bullet = (() => {
             this.setName("bullet");
             this.setX(a);
             this.setY(b);
-            this.setR(2);
+            this.setR(0.2);
         }
 
         getLeft(){

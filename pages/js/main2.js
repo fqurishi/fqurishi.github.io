@@ -178,19 +178,31 @@ import {gamefunctions} from './Functions.js'
                 z += progress;
                 if(z > 200){
                     for(let object of zombieObjects){
-                        if (object.getY() == player1.getY() && object.getX() > player1.getX()){
-                            object.setRight(1);
+                        if(gamefunctions.ladderUpCollision(object.getSprite().position.z,object.getSprite().position.y) == true
+                            && player1.getY() > object.getY() ){
+                            object.setUp(1);
+                            object.update();
                         }
-                        else if (object.getY() == player1.getY() && object.getX() < player1.getX()){
-                            object.setLeft(1);
-                        }
-                        if(gamefunctions.ladderUpCollision(object.getSprite().position.z,object.getSprite().position.y) == true && player1.getY() > object.getY()){
-                            object.translateY(0.5);
-                        }
-                        else if(gamefunctions.ladderDownCollision(object.getSprite().position.z,object.getSprite().position.y) == true && player1.getY() < object.getY()){
-                            object.translateY(-0.5);
+                        else if(gamefunctions.ladderDownCollision(object.getSprite().position.z,object.getSprite().position.y) == true 
+                            && player1.getY() < object.getY() ){
+                            object.setDown(1);
+                            object.update();
                         }
                         else{
+                            if(gamefunctions.isSpriteOnFloor(object.getY())){
+                                object.setLadderOff();
+                                if (gamefunctions.sameFloor(object,player1) && object.getX() > player1.getX()){
+                                    object.setRight(1);
+           
+                                }
+                                else if (gamefunctions.sameFloor(object,player1) && object.getX() < player1.getX()){
+                                    object.setLeft(1);
+        
+                                }
+                                else{
+                                    object.setLeft(object.getRightOrLeft());
+                                }
+                            }
                             object.update();
                             object.updateDirection();
                             object.setState(!object.getState());
@@ -294,9 +306,30 @@ import {gamefunctions} from './Functions.js'
                 let progress = timestamp - lastRender;
                 for(let object of bulletObjects){
                     object.update();
+                    for(let objectsZ of zombieObjects){
+                        if(gamefunctions.isCollide(objectsZ, object)){
+                            objectsZ.setLife(0);
+                            object.setLife(0);
+                        }
+                        console.log(gamefunctions.isCollide(objectsZ, object));
+                    }
+                    if(object.getLife() == false){
+                        scene.remove(object.getSprite());
+                        object.getSprite().material.dispose();
+                        object.setY(1000);
+                        object.setX(1000);
+                        object = undefined;
+                    }
                 }
                 for (let object of zombieObjects){
                     gamefunctions.setSpriteFloor(object.getSprite(),object.getY());
+                    if(object.getLife() == false){
+                        scene.remove(object.getSprite());
+                        object.getSprite().material.dispose();
+                        object.setY(1000);
+                        object.setX(1000);
+                        object = undefined;
+                    }
                 }
                 tick(progress);
                 lastRender = timestamp;

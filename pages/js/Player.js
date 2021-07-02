@@ -29,7 +29,7 @@ export const player = (() => {
             this.setX(1);
             this.setY(0);
             this.setName("Player");
-            this.setR(10);
+            this.setR(2);
         }
         getKeyPressRight(){
             return this.#pressedKeys['right'];

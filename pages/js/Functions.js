@@ -120,7 +120,40 @@ export const gamefunctions = (function() {
       }
     },
 
+    isSpriteOnFloor: function(y) {
+      //get y positions of all floors
+      const firstFloor=-7, secondFloor=-0.3, thirdFloor=6.5, fourthFloor=13.2, groundFloor=-14;
+      if(y == firstFloor || y == secondFloor || y== thirdFloor || y == groundFloor || y == fourthFloor){
+        return true;
+      }
+      else{
+        return false;
+      }
+    },
+
+    sameFloor: function(a, b){
+      if(a.getY() == b.getY()){
+        return true;
+      }
+      else{
+        return false;
+      }
+
+    },
+
     isCollide: function(a, b) {
+      let dx = a.getX() - b.getX();
+      let dy = a.getY() - b.getY();
+      let distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < a.getR() + b.getR()) {
+      // collision detected!
+        return true;
+      }
+      else{
+        return false;
+      }
+      
     },
 
     attack: function(a, b) {
