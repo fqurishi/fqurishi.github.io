@@ -14,6 +14,7 @@ export const player = (() => {
         #health;
         #isLeft;
         #isRight;
+        #pain;
         #pressedKeys;
         constructor(){
             super();
@@ -24,12 +25,16 @@ export const player = (() => {
             this.#width = null;
             this.#height = null;
             this.#ammo = 9;
-            this.#health = 15;
+            this.#health = 30;
             this.#pressedKeys = {left: false, right: false, up: false, down: false, space: false};
             this.setX(1);
             this.setY(0);
             this.setName("Player");
-            this.setR(2);
+            this.setR(0.4);
+            this.setPain(0);
+        }
+        getPain(){
+            return this.#pain;
         }
         getKeyPressRight(){
             return this.#pressedKeys['right'];
@@ -99,12 +104,18 @@ export const player = (() => {
             this.#up = !a;
             this.#down = a;
         }
+        setPain(a){
+            this.#pain = a;
+        }
         shootGun(){
             this.#pressedKeys['space'] = true;
             this.#ammo = this.getAmmo() - 1;
 
         }
         damaged(a){
+            if(this.getPain() <= 0){
+                this.setPain(2);
+            }
             this.#health = this.#health - a;
         }
         shotGun(){

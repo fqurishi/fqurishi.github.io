@@ -15,6 +15,8 @@ import {gamefunctions} from './Functions.js'
             let lastRender = 0;
             let p = 0;
             let z = 0;
+            let red = new THREE.Color(0xFF0000);
+            let white = new THREE.Color(0xFFFFFF);
             //spawn points for zombies later on in game when zombies appear from off screen
             let spawnPoint = [-21, 21];
             //controller inputs
@@ -214,7 +216,7 @@ import {gamefunctions} from './Functions.js'
                     }
                     z = 0;
                 }
-                if(p > 120){
+                if(p > 120 && player1.getLife()){
                     if(player1.getKeyPressRight()){
                         if (player1.getTexture() == tex3 || player1.getTexture() == tex4){
                             player1.setTexture(tex8);
@@ -296,6 +298,22 @@ import {gamefunctions} from './Functions.js'
                         }
                         console.log(bullet1.getSprite().position);
                     }
+                    for (let object of zombieObjects){
+                        if(gamefunctions.isCollide(player1,object)){
+                            player1.damaged(1);
+                            if (player1.getHealth() <= 0){
+                                player1.setLife(false);
+                            }
+                            console.log(player1.getHealth());
+                        }
+                    }
+                    if(player1.getPain() <= 2 && player1.getPain() > 0){
+                        player1.getSprite().material.color.set(red);
+                        player1.setPain(player1.getPain() - 1);
+                    }
+                    else{
+                        player1.getSprite().material.color.set(white);
+                    }
                     player1.updateDirection();
                     p = 0;
                 }
@@ -331,6 +349,14 @@ import {gamefunctions} from './Functions.js'
                         object = undefined;
                     }
                 }
+                if(player1.getLife() == false){
+                    scene.remove(player1.getSprite());
+                    player1.getSprite().material.dispose();
+                    player1.setY(1000);
+                    player1.setX(1000);
+                    gameOver();
+                }
+                
                 tick(progress);
                 lastRender = timestamp;
                 gamefunctions.setSpriteFloor(player1.getSprite(),player1.getSprite().position.y);
@@ -339,5 +365,9 @@ import {gamefunctions} from './Functions.js'
 			};
             animate(1);
         }
+
+        function gameOver() {
+            document.getElementById("gameover").style.display = "block";
+          }
 
 		
