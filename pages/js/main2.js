@@ -247,7 +247,6 @@ import {gamefunctions} from './Functions.js'
                             player1.setTexture(tex6);
                         }
                         s4.play();
-                        console.log(player1.getTexture());
                         player1.setKeysOff();
                     }
                     else if(player1.getKeyPressDown()){
@@ -258,7 +257,6 @@ import {gamefunctions} from './Functions.js'
                             player1.setTexture(tex6);
                         }
                         s4.play();
-                        console.log(player1.getTexture());
                         player1.setKeysOff();
                     }
                     else if(player1.getKeyPressSpace()){
@@ -296,7 +294,6 @@ import {gamefunctions} from './Functions.js'
                             bullet1.setLeft(1);
                             bullet1.update();
                         }
-                        console.log(bullet1.getSprite().position);
                     }
                     for (let object of zombieObjects){
                         if(gamefunctions.isCollide(player1,object)){
@@ -304,7 +301,6 @@ import {gamefunctions} from './Functions.js'
                             if (player1.getHealth() <= 0){
                                 player1.setLife(false);
                             }
-                            console.log(player1.getHealth());
                         }
                     }
                     if(player1.getPain() <= 2 && player1.getPain() > 0){
@@ -329,7 +325,6 @@ import {gamefunctions} from './Functions.js'
                             objectsZ.setLife(0);
                             object.setLife(0);
                         }
-                        console.log(gamefunctions.isCollide(objectsZ, object));
                     }
                     if(object.getLife() == false){
                         scene.remove(object.getSprite());
