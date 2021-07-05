@@ -1,6 +1,6 @@
 import 'https://cdn.jsdelivr.net/npm/socket.io-client@3.1.0/dist/socket.io.js';
 
-const socket = io("localhost:3000", {
+const socket = io("https://52.8.58.114:3000", {
   reconnection: false,
   transports: ['websocket'],
 });
