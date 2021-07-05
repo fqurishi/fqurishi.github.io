@@ -5,7 +5,16 @@ import {zombie} from './Zombie.js'
 import {gamefunctions} from './Functions.js'
 
             let scene, camera, renderer;
+            let avatar;
+            const alexButton = document.getElementById('Alex');
+            const jamesButton = document.getElementById('James');
+            const cyrusButton = document.getElementById('Cyrus');
+            const grimButton = document.getElementById('Grim');
             const startButton = document.getElementById('startButton');
+            alexButton.addEventListener('click', selectAvatar);
+            jamesButton.addEventListener('click', selectAvatar);
+            cyrusButton.addEventListener('click', selectAvatar);
+            grimButton.addEventListener('click', selectAvatar);
             startButton.addEventListener('click', init);
             let player1 = new player.Player();
             let bullet1;
@@ -21,6 +30,13 @@ import {gamefunctions} from './Functions.js'
             let spawnPoint = [-21, 21];
             //controller inputs
             let spaceUp = true;
+
+            function selectAvatar() {
+                const selectSreen = document.getElementById( 'CharacterSelect' );
+				selectSreen.remove();
+                avatar = this.id;
+                console.log(avatar);
+            }
             
             function init() {
                 const overlay = document.getElementById( 'overlay' );

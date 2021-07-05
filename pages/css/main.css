@@ -74,6 +74,31 @@ a, button, input, select {
 		text-transform: uppercase;
 		cursor: pointer;
 	}
+#CharacterSelect {
+	position: absolute;
+	font-size: 16px;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background: rgb(0, 0, 0);
+	}
+	
+	#CharacterSelect button {
+		background: transparent;
+		border: 0;
+		border: 1px solid rgb(255, 255, 255);
+		border-radius: 4px;
+		color: #ffffff;
+		padding: 12px 18px;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
 
 #notSupported {
 	width: 50%;

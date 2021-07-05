@@ -31,6 +31,15 @@
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
 }
+#selecttext{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
 
 </style>
 <body>
@@ -39,12 +48,30 @@
 		<a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"></a>
 		<button class="tablink" onclick="window.location.href='../';">HOME</button>
 	</div>
-	<!-- Overlay  -->
-	<div id="overlay">
-		<button id="startButton">Play</button>
-	</div>
+  <!-- Overlay -->
+  <div id="overlay">
+    <button id="startButton">Play</button>
+  </div>
+  	<!-- Character Select  -->
+	<div id="CharacterSelect">
+    	<!-- Navbar -->
+	  <div class="w3-top">
+		  <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"></a>
+		  <button class="tablink" onclick="window.location.href='../';">HOME</button>
+	  </div>
+    <div id="selecttext">Select Character</div>
+    <button id="James">James</button>
+    <button id="Alex">Alex</button>
+    <button id="Cyrus">Cyrus</button>
+    <button id="Grim">Grim</button>
+	</div> 
 	<!-- GameOver-->
 	<div id="gameover">
+    <!-- Navbar -->
+	  <div class="w3-top">
+		  <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"></a>
+		  <button class="tablink" onclick="window.location.href='../';">HOME</button>
+	  </div>
 		<div id="text">Game Over</div>
 	</div>
 	<script src="./js/main2.js" type="module">
