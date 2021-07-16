@@ -48,36 +48,17 @@ body { height:100%; font-family: "Lato", sans-serif; background-color: #000;}
   <!-- The Home Section -->
  <div id="home" class="tabcontent">
 <div class="bg">
-<img src="/images/background.png" class="bg" alt="Faisl Qurishi">
+  <script src="./pages/js/indexPage.js" type="module">
+  </script>
   <div class="w3-display-middle" style="white-space:nowrap;">
     <span class="w3-center w3-padding-large w3-white w3-xlarge w3-wide w3-animate-opacity">Faisl Qurishi</span>
   </div>
 </div>
 </div>
 
-
   
 <!-- End Page Content -->
 </div>
-<script>
-// Used to toggle the menu
-function openPage(pageName,elmnt,color) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("w3-bar-item w3-button w3-padding-large w3-hide-small");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].style.backgroundColor = "";
-  }
-  document.getElementById(pageName).style.display = "block";
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-
-</script>
 
 </body>
 </html>
