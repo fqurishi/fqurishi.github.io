@@ -27,19 +27,63 @@ body { height:100%; font-family: "Lato", sans-serif; background-color: #000;}
 		margin-right: auto;
 	}
 
+/*top nav */
+.topnav {
+	overflow: hidden;
+  	background-color: rgb(0, 0, 0);
+}
+/* header */
+.header {
+	padding: 40px;
+  	text-align: center;
+	left:50%;
+	top:0;
+}
+/* footer */
+.footer {
+	margin-top: 0px;
+	padding: 0px;
+	text-align: center;
+	left:50%;
+	bottom:0;
+}
+#scene {
+	display: block;
+    margin-left: auto;
+  	margin-right: auto;
+	top:0;
+	left:0;
+	height: 100%;
+	width: 100%;
+}
+.relative {
+    position: relative;
+	display: block;
+    margin-left: auto;
+  	margin-right: auto;
+}
+
+.h {
+    height: 300px;
+}
+
+.w {
+    width: auto;
+}
+
 
 </style>
 <body style="background-color: black;">
 <div class = "w3-black">
 
 <!-- Navbar  -->
-<div class="w3-top">
-  <div class="w3-bar w3-black w3-card">
+<div class="w3-center w3-top">
+  <div class="w3-center w3-bar w3-black w3-card">
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"></a>
 	<button class="tablink" onclick="window.location.href='../';">HOME</button>
 	<button class="tablink" onclick="location.href='https://faislqurishi.dev/pages/Projects';">PROJECTS</button>
 	<button class="tablink" onclick="location.href='https://faislqurishi.dev/pages/Contact';">CONTACT</button>
-	<button class="tablink" onclick="location.href='https://faislqurishi.dev/pages/game';">GAME</button>
+	<button class="tablink" onclick="location.href='https://faislqurishi.dev/pages/Game';">GAMES</button>
   </div>
 </div>
 
@@ -48,40 +92,29 @@ body { height:100%; font-family: "Lato", sans-serif; background-color: #000;}
 <!-- Page content -->
 
  <!-- The ABOUT Section -->
-  <div id="about" class="tabcontent">
-	<script src="./js/about.js" type="module">
-	</script>
-  	<div class="w3-display-middle" style="white-space:nowrap;">
+	<div class="header">
     <h2 class="w3-center w3-wide">ABOUT</h2>
 	<h5 class="w3-center w3-wide">Faisl Qurishi</h5>
 	<p class="w3-center w3-opacity"><i>Software Developer</i></p>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-    <p class="w3-justify">Hello welcome to my personal website, I am a software devolper with a strong passion for game programming.<br>
-	I graduated from California State Sacramento in Spring 2021.<br>
-	I enjoy being challenged and engaging in projects that require me to use my knowledge.<br> 
-	I work with C, C++, Java and am knowledgable in Python. I continue to learn new languages while I create projects.<br> 
-	I am familiar with MS Visual Studio, Eclipse, Android Studio, and UnReal Engine.<br>
-	<br>
-	Currently working on creating my own 3D game engine using C++ and OpenGL. <br>
-	<br>
-	Feel free to look around on my site and contact me.
+	</div>
+	<div class="relative h w">
+	<div id="scene">
+	<script src="./js/about.js" type="module">
+	</script>
+	</div>
+	</div>
+	<div class="footer">
+	<p class="w3-center w3-justify">
+			Hello welcome to my personal website, I am a software devolper with a strong passion for game programming.<br>
+			I graduated from California State Sacramento in Spring 2021.<br>
+			I enjoy being challenged and engaging in projects that require me to use my knowledge.<br> 
+			I work with C, C++, Java and am knowledgable in Python. I continue to learn new languages while I create projects.<br> 
+			I am familiar with MS Visual Studio, Eclipse, Android Studio, and UnReal Engine.<br>
+			<br>
+			Currently working on creating my own 3D game engine using C++ and OpenGL. <br>
+			Feel free to look around on my site and contact me.
 	</p>
-  </div>
-  </div>
+	</div>
 
 
 
