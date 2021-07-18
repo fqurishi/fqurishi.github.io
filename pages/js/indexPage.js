@@ -67,7 +67,7 @@ function addCubes(){
     const cube = new THREE.Mesh( geometry, material );
     let x,y,z;
     x = THREE.MathUtils.randFloat(-200,200);
-    y = THREE.MathUtils.randFloat(8,40);
+    y = THREE.MathUtils.randFloat(9,38);
     z = THREE.MathUtils.randFloat(-26,30);
     cube.position.set(x,y,z);
     scene.add( cube );
@@ -79,7 +79,7 @@ function addSpheres(){
     const sphere = new THREE.Mesh( geometry, material );
     let x,y,z;
     x = THREE.MathUtils.randFloat(-200,200);
-    y = THREE.MathUtils.randFloat(8,40);
+    y = THREE.MathUtils.randFloat(9,38);
     z = THREE.MathUtils.randFloat(-26,30);
     sphere.position.set(x,y,z);
     scene.add( sphere );
@@ -92,7 +92,7 @@ function addTriangles(){
     const triangle = new THREE.Mesh( geometry, material );
     let x,y,z;
     x = THREE.MathUtils.randFloat(-200,200);
-    y = THREE.MathUtils.randFloat(8,40);
+    y = THREE.MathUtils.randFloat(9,38);
     z = THREE.MathUtils.randFloat(-26,30);
     triangle.position.set(x,y,z);
     scene.add( triangle );
