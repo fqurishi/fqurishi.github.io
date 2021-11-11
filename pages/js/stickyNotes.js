@@ -27,7 +27,6 @@ function init(){
     canvas1.height = window.innerHeight;
     canvas1.width = window.innerWidth;
     //layer2 images
-    //layer1 notes
     canvas2 = document.querySelector("#canvas2");
     context2 = canvas1.getContext("2d");
     canvas2.height = window.innerHeight;
@@ -41,7 +40,7 @@ function init(){
     colorButton.disabled = true;
 }
 
-//text
+//text for features changes if drawing/erasing or dragging
 const featuresText = document.getElementById("featuresText");
 
 //buttons functions
@@ -55,6 +54,7 @@ function clickDrawButton(){
         drawFlag = true;
         dragFlag = false;
         eraseFlag = false;
+        //revel slider, hide delete and color buttons, change text to 'Brush Size:'
         brushSlider.style.display = "block";
         deleteButton.style.display = "none";
         colorButton.style.display = "none";
@@ -71,6 +71,7 @@ function clickDrawButton(){
         drawFlag = false;
         dragFlag = true;
         eraseFlag = false;
+        //reveal delete and color buttons, hide slider, change text to 'Note Controls:'
         brushSlider.style.display = "none";
         deleteButton.style.display = "block";
         colorButton.style.display = "block";
@@ -93,14 +94,19 @@ function clickNoteButton(){
 const clearButton = document.getElementById('clear');
 clearButton.addEventListener('click',clickEraseButton);
 function clickEraseButton(){
+    //erase each canvas completely
     eraseCanvas(context0);
     eraseCanvas(context1);
     eraseCanvas(context2);
+    //delete array note objects and image objects
     noteObjects.length = 0;
+    imageObjects.length = 0;
+    //since theres no notes, clickedNote must be null
     clickedNote = null;
 }
 //erase canvas function
 function eraseCanvas(context){
+    //calls on the context, deletes everything on window
     context.clearRect(0,0,window.innerWidth, window.innerHeight);
 }
 
@@ -117,12 +123,14 @@ brushSlider.oninput = function(){
 const deleteButton = document.getElementById('delete');
 deleteButton.addEventListener('click',clickDeleteButton);
 function clickDeleteButton(){
+    //check every note in note objects then delete the one that was last clicked
     for(let i = 0; i < noteObjects.length; i++){
         if(noteObjects[i] == clickedNote){
             noteObjects.splice(i,1);
             context1.clearRect(0,0, window.innerWidth, window.innerHeight);
         }
     }
+    //empty out the clickedNote variable
     clickedNote = null;
 }
 
@@ -130,6 +138,7 @@ function clickDeleteButton(){
 const colorButton = document.getElementById('color');
 colorButton.addEventListener('click',clickColorButton);
 function clickColorButton(){
+    //check every note in note objects and change the color of the one that was last clicked
     for(let i = 0; i < noteObjects.length; i++){
         if(noteObjects[i] == clickedNote){
             noteObjects[i].changeColor();
@@ -163,6 +172,7 @@ let startY = 0;
 //variable to find last clicked note
 let clickedNote;
 function startPos(e){
+    //drag flag wasnt pressed then its either drawing or erasing
     if(!dragFlag){
         if(drawFlag)
             drawing = true;
@@ -170,13 +180,18 @@ function startPos(e){
             erasing = true;
     }
     else{
+        //if drag flag is on
+        //starting x and y coordinates are wherever the mouse clicked on window
         startX = e.clientX;
         startY = e.clientY;
         //for loop to check if grabbing any note
         for(let note of noteObjects){
             if(collision(note,e.clientX,e.clientY)){
+                //turn on dragging for note
                 note.isDragging = true;
+                //throw this note into clicked note
                 clickedNote = note;
+                //clear the layer as we will begin moving this note
                 context1.clearRect(0,0, window.innerWidth, window.innerHeight);
             }
         }
@@ -190,11 +205,13 @@ function startPos(e){
     }
 }
 function endPos(){
+    //if not dragging, turn off the drawing or erasing as we have stopped clicking
     if(!dragFlag){
         if(drawFlag)
             drawing = false;
         else
             erasing = false;
+        //reset path for line stroke
         context0.beginPath();
     }
     else{
@@ -209,8 +226,10 @@ function endPos(){
     }
 }
 function draw(e){
+    //if drag flag isnt pressed, turn cursor into crosshairs
     if(!dragFlag){
         document.body.style.cursor = "crosshair";
+        //if drawing or erasing isnt on, just return otherwise set the line style and size
         if(drawFlag){
             if(!drawing) return;
             context0.lineCap = "round";
@@ -223,13 +242,18 @@ function draw(e){
             context0.strokeStyle = "darkgrey";
             context0.lineWidth = brushSize;
         }
+        //create consecutive lines each time the mouse moves 
         context0.lineTo(e.clientX, e.clientY);
         context0.stroke();
+        //begin path here to make less pixelated
         context0.beginPath();
+        //move begin of line to mouse position on screen
         context0.moveTo(e.clientX, e.clientY);
     }
     else{
+        //if not drawing change cursor to normal
         document.body.style.cursor = "default";
+        //startX and startY will be updated to current move, as will dx and dy
         let dx = e.clientX - startX;
         let dy = e.clientY - startY;
         startX = e.clientX;
@@ -238,10 +262,13 @@ function draw(e){
         //for loop to check if dragging any note
         for(let note of noteObjects){
             if(collision(note,e.clientX,e.clientY)){
+                //change cursor to grab if mouse and object are colliding
                 document.body.style.cursor = "grab";
             }
             if(note.isDragging){
+                //if its being dragged change cursor to grabbing and clear the canvas as we are moving an object
                 context1.clearRect(0,0, window.innerWidth, window.innerHeight);
+                //dx and dy let the x and y coordinates know where to move
                 note.x += dx;
                 note.y += dy;
                 document.body.style.cursor = "grabbing";
@@ -280,6 +307,8 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 //object collision function
 function collision(note, x, y){
+    //collision function, works with sqaure/rectangles only. Checks to see the current x and y being passed collide with the object
+    //basic math, check if cursor's coordinates are within the bounds of the square/rectangle
     if(x > note.x - note.getWidth() * 0.5 && y > note.y - note.getHeight() * 0.5 && x < note.x + note.getWidth() - 
         note.getWidth() * 0.5 && y < note.y + note.getHeight() - note.getHeight() * 0.5)
         return true
@@ -324,6 +353,7 @@ class StickyNote{
         this.setWidth(width);
         this.x = x;
         this.y = y;
+        //isDragging is used to see if object is being dragged or not
         this.isDragging = false;
         this.setText(text);
         this.setColor("yellow");
@@ -331,6 +361,7 @@ class StickyNote{
         this.render(context1);
         
     }
+    //change color is simple, switch case to change colors on whichever one theyre currently on. Cycle through.
     changeColor(){
         switch(this.getColor()){
             case "yellow":
@@ -347,13 +378,20 @@ class StickyNote{
         }
     }
     render(context){
+        //drawing the object
+        //save current state so we know where it is
         context.save();
+        //begin the path
         context.beginPath();
+        //draw its size (arguments grabbed from constructor)
         context.rect(this.x - this.getWidth() * 0.5, this.y - this.getHeight() * 0.5, this.getWidth(), this.getHeight());
+        //fill it with the color of choice
         context.fillStyle = this.getColor();
         context.fill();
+        //design the text
         context.fillStyle = "black";
         context.fillText(this.text,this.x - 100,this.y - 100,this.getWidth());
+        //restore to reset stack
         context.restore();
     }
     getHeight(){
