@@ -180,6 +180,13 @@ function startPos(e){
                 context1.clearRect(0,0, window.innerWidth, window.innerHeight);
             }
         }
+        //for loop to check if grabbing any image
+        for(let image of imageObjects){
+            if(collision(image,e.clientX,e.clientY)){
+                image.isDragging = true;
+                context2.clearRect(0,0, window.innerWidth, window.innerHeight);
+            }
+        }
     }
 }
 function endPos(){
@@ -194,6 +201,10 @@ function endPos(){
         //for loop to make all note objects stop dragging
         for(let note of noteObjects){
             note.isDragging = false;
+        }
+        //for loop to make all image objects stop dragging
+        for(let image of imageObjects){
+            image.isDragging = false;
         }
     }
 }
@@ -218,7 +229,7 @@ function draw(e){
         context0.moveTo(e.clientX, e.clientY);
     }
     else{
-        document.body.style.cursor = "grab";
+        document.body.style.cursor = "default";
         let dx = e.clientX - startX;
         let dy = e.clientY - startY;
         startX = e.clientX;
@@ -226,10 +237,25 @@ function draw(e){
 
         //for loop to check if dragging any note
         for(let note of noteObjects){
+            if(collision(note,e.clientX,e.clientY)){
+                document.body.style.cursor = "grab";
+            }
             if(note.isDragging){
                 context1.clearRect(0,0, window.innerWidth, window.innerHeight);
                 note.x += dx;
                 note.y += dy;
+                document.body.style.cursor = "grabbing";
+            }
+        }
+        //for loop to check if dragging any images
+        for (let image of imageObjects){
+            if(collision(image,e.clientX,e.clientY)){
+                document.body.style.cursor = "grab";
+            }
+            if(image.isDragging){
+                context2.clearRect(0,0, window.innerWidth, window.innerHeight);
+                image.x += dx;
+                image.y += dy;
                 document.body.style.cursor = "grabbing";
             }
         }
