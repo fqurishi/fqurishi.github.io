@@ -1,0 +1,7 @@
+# ignore ALL .log files
+*.log
+
+**/pages/test.html
+**/pages/outbreak3d.html
+**/pages/js/main.js
+**/pages/js/outbreak3d.js
