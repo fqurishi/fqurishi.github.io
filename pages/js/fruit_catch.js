@@ -121,10 +121,10 @@ document.addEventListener("DOMContentLoaded", function () {
       // Draw score
       context.fillStyle = "black";
       context.font = "20px Arial";
-      context.fillText(`Score: ${score}`, 10, 30);
-
+      context.fillText(`CATCH THE FRUIT!!`, 10, 60);
+      context.fillText(`Score: ${score}`, 10, 60);
       // Draw timer
-      context.fillText(`Time: ${Math.ceil(timer)}`, 10, 60);
+      context.fillText(`Time: ${Math.ceil(timer)}`, 10, 90);
 
       // Game over
       if (gameover) {
@@ -136,6 +136,13 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           context.fillText("You Lose!", canvas.width / 2 - 100, canvas.height / 2);
         }
+
+        setTimeout(() => {
+          const gamePages = ["moving_target", "trace"];
+          const randomIndex = Math.floor(Math.random() * gamePages.length);
+          const pageUrl = gamePages[randomIndex];
+          window.location.href = pageUrl;
+        }, 3000);
       }
     }
 
