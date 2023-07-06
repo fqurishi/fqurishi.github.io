@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Draw score
       context.fillStyle = "black";
       context.font = "20px Arial";
-      context.fillText(`CATCH THE FRUIT!!`, 0, 60);
+      context.fillText(`CATCH THE FRUIT!!`, 10, 30);
       context.fillText(`Score: ${score}`, 10, 60);
       // Draw timer
       context.fillText(`Time: ${Math.ceil(timer)}`, 10, 90);
