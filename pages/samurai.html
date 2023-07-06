@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      #blockText {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: #ff0000;
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      #timerText {
+        position: absolute;
+        top: 40px;
+        left: 10px;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      #lifeText {
+        position: absolute;
+        top: 80px;
+        left: 10px;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      #gameOverText {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        font-size: 48px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="blockText">Block the Red!</div>
+    <div id="timerText"></div>
+    <div id="lifeText"></div>
+    <div id="gameOverText"></div>
+    <script type="module" src="./js/samurai.js"></script>
+  </body>
+</html>

@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Draw score
       context.fillStyle = "black";
       context.font = "20px Arial";
-      context.fillText(`CATCH THE FRUIT!!`, 10, 60);
+      context.fillText(`CATCH THE FRUIT!!`, 0, 60);
       context.fillText(`Score: ${score}`, 10, 60);
       // Draw timer
       context.fillText(`Time: ${Math.ceil(timer)}`, 10, 90);
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         setTimeout(() => {
-          const gamePages = ["moving_target", "trace"];
+          const gamePages = ["moving_target", "trace", "samurai"];
           const randomIndex = Math.floor(Math.random() * gamePages.length);
           const pageUrl = gamePages[randomIndex];
           window.location.href = pageUrl;

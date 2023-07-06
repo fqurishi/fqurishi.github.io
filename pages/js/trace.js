@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         displayResult("You Lose!");
       }
       setTimeout(() => {
-        const gamePages = ["moving_target", "fruit_catch"];
+        const gamePages = ["moving_target", "fruit_catch", "samurai"];
         const randomIndex = Math.floor(Math.random() * gamePages.length);
         const pageUrl = gamePages[randomIndex];
         window.location.href = pageUrl;
