@@ -315,3 +315,4 @@ function updateSwordPosition(event) {
 
 // Add event listener for mouse movement
 document.addEventListener('mousemove', updateSwordPosition, false);
+document.addEventListener('touchmove', updateSwordPosition, false);

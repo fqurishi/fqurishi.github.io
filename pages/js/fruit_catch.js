@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let timerInterval;
 
     canvas.addEventListener("mousemove", moveCatcher);
+    canvas.addEventListener("touchmove", moveCatcher);
 
     function moveCatcher(event) {
       if (gameover) return;

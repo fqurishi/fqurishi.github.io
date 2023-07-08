@@ -18,7 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
     canvas.addEventListener("mousemove", drawPath);
     canvas.addEventListener("mouseup", stopDrawing);
     canvas.addEventListener("mouseleave", stopDrawing);
-  
+
+    canvas.addEventListener("touchstart", startDrawing);
+    canvas.addEventListener("touchmove", drawPath);
+    canvas.addEventListener("touchend", stopDrawing);
+      
     function startDrawing(event) {
       if (gameover) return;
       isDrawing = true;
