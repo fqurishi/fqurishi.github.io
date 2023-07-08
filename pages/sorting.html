@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sorting Game</title>
+    <title>Sorting Bombs</title>
     <style>
-      canvas {
+    canvas {
         border: 1px solid black;
-      }
-      html, body {
+    }
+    html, body {
         margin: 0;
         padding: 0;
         overflow: hidden;
-      }
-      #titleText {
+    }
+    #titleText {
         position: absolute;
         top: 10px;
         left: 10px;
@@ -19,8 +19,8 @@
         font-family: Arial, sans-serif;
         font-size: 24px;
         font-weight: bold;
-      }
-      #timerText {
+    }
+    #timerText {
         position: absolute;
         top: 40px;
         left: 10px;
@@ -28,8 +28,8 @@
         font-family: Arial, sans-serif;
         font-size: 24px;
         font-weight: bold;
-      }
-      #lifeText {
+    }
+    #lifeText {
         position: absolute;
         top: 70px;
         left: 10px;
@@ -37,8 +37,8 @@
         font-family: Arial, sans-serif;
         font-size: 24px;
         font-weight: bold;
-      }
-      #gameOverText {
+    }
+    #gameOverText {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -48,15 +48,64 @@
         font-size: 48px;
         font-weight: bold;
         display: none;
-      }
+    }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+
+    .overlay .title-text {
+        font-family: Arial, sans-serif;
+        font-size: 32px;
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 24px;
+    }
+
+    .overlay .start-button {
+        padding: 16px 24px;
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #000000;
+        border: none;
+        cursor: pointer;
+    }
     </style>
   </head>
   <body>
-    <div id="titleText">Sort the bombs!</div>
+    <div id="titleText">Sort The Bombs!</div>
     <div id="timerText"></div>
     <div id="lifeText"></div>
     <div id="gameOverText"></div>
     <canvas id="gameCanvas"></canvas>
-    <script src = "./js/sorting.js" ></script>
+    
+    <div class="overlay">
+        <div class="title-text">Sort The Bombs!</div>
+        <button class="start-button">Start</button>
+    </div>
+    
+    <script>
+      // Handle the start button click event
+      document.querySelector('.start-button').addEventListener('click', function() {
+        // Load the script file and start the game
+        const script = document.createElement('script');
+        script.src = './js/sorting.js';
+        document.body.appendChild(script);
+        
+        // Hide the overlay
+        document.querySelector('.overlay').style.display = 'none';
+      });
+    </script>
   </body>
 </html>

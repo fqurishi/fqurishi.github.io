@@ -1,6 +1,9 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
+const explodeEffect = new Audio('../resources/explode.mp3');
+const beepEffect = new Audio('../resources/beep.mp3');
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -73,6 +76,8 @@ function updateBombs() {
         bomb.timeLeft -= 1 / 60; // Decrease time left
 
         if (bomb.timeLeft <= 0) {
+            //play sound effect
+            explodeEffect.play();
             bomb.color = 'darkred';
             bomb.size = bombSize * (3.5 + bomb.timeLeft);
             bomb.exploded = true;
@@ -80,6 +85,7 @@ function updateBombs() {
                 explodeBomb(i);
             }
         } else if (bomb.timeLeft <= blinkStartTime && Math.floor(bomb.timeLeft / blinkInterval) % 2 === 0) {
+            beepEffect.play();
             bomb.color = bomb.ogColor;
         } else if (bomb.timeLeft <= blinkStartTime && Math.floor(bomb.timeLeft / blinkInterval) % 2 === 1) {
             bomb.color = 'red';
@@ -163,8 +169,15 @@ function explodeBomb(index) {
 }
 
 function startDrag(event) {
-    const mouseX = event.clientX - canvas.offsetLeft;
-    const mouseY = event.clientY - canvas.offsetTop;
+    let mouseX, mouseY;
+
+    if (event.type === 'mousedown') {
+        mouseX = event.clientX - canvas.offsetLeft;
+        mouseY = event.clientY - canvas.offsetTop;
+    } else if (event.type === 'touchstart') {
+        mouseX = event.touches[0].clientX - canvas.offsetLeft;
+        mouseY = event.touches[0].clientY - canvas.offsetTop;
+    }
 
     for (let i = bombs.length - 1; i >= 0; i--) {
         const bomb = bombs[i];
@@ -190,8 +203,15 @@ function drag(event) {
         return;
     }
 
-    const mouseX = event.clientX - canvas.offsetLeft;
-    const mouseY = event.clientY - canvas.offsetTop;
+    let mouseX, mouseY;
+
+    if (event.type === 'mousemove') {
+        mouseX = event.clientX - canvas.offsetLeft;
+        mouseY = event.clientY - canvas.offsetTop;
+    } else if (event.type === 'touchmove') {
+        mouseX = event.touches[0].clientX - canvas.offsetLeft;
+        mouseY = event.touches[0].clientY - canvas.offsetTop;
+    }
 
     selectedBomb.x = mouseX;
     selectedBomb.y = mouseY;
@@ -259,6 +279,14 @@ function updateGame() {
         drawContainers();
         updateBombs();
         drawBombs();
+    }
+    else{
+        setTimeout(() => {
+            const gamePages = ["moving_target", "trace", "samurai", "fruit_catch"];
+            const randomIndex = Math.floor(Math.random() * gamePages.length);
+            const pageUrl = gamePages[randomIndex];
+            window.location.href = pageUrl;
+          }, 3000);
     }
 
 }

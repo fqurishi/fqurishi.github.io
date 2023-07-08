@@ -1,15 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Click the Moving Target</title>
+    <title>Shoot The Target!</title>
     <style>
       canvas {
         border: 1px solid black;
+      }
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+      }   
+      .overlay .title-text {
+        font-family: Arial, sans-serif;
+        font-size: 32px;
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 24px;
+      }
+      .overlay .start-button {
+        padding: 16px 24px;
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #000000;
+        border: none;
+        cursor: pointer;
       }
     </style>
   </head>
   <body>
     <canvas id="gameCanvas"></canvas>
+    <div class="overlay">
+      <div class="title-text">Shoot The Target!</div>
+      <button class="start-button">Start</button>
+    </div>
     <script src="./js/moving_target.js"></script>
   </body>
 </html>

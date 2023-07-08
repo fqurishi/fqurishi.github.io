@@ -1,6 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const startButton = document.querySelector('.start-button');
+    const overlay = document.querySelector('.overlay');
     const canvas = document.getElementById("gameCanvas");
     const context = canvas.getContext("2d");
+
+    const hitEffect = new Audio('../resources/bullet_hit.mp3');
+    const missEffect = new Audio('../resources/bullet_miss.mp3');
   
     // Set canvas dimensions to match the screen size
     canvas.width = window.innerWidth;
@@ -68,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
           canvas.height / 2
         );
         setTimeout(() => {
-          const gamePages = ["trace", "fruit_catch", "samurai"];
+          const gamePages = ["trace", "fruit_catch", "samurai", "sorting"];
           const randomIndex = Math.floor(Math.random() * gamePages.length);
           const pageUrl = gamePages[randomIndex];
           window.location.href = pageUrl;
@@ -119,7 +124,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const distance = Math.sqrt((clickX - targetX) ** 2 + (clickY - targetY) ** 2);
   
       if (distance <= targetSize / 2) {
+        hitEffect.play();
         score++;
+      }else{
+        missEffect.play();
       }
   
       if (timeLeft <= 0) {
@@ -134,6 +142,9 @@ document.addEventListener("DOMContentLoaded", function () {
       requestAnimationFrame(gameLoop);
     }
   
-    gameLoop();
+    startButton.addEventListener('click', function () {
+      overlay.style.display = 'none';
+      gameLoop();
+    });
   });
   

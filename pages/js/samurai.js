@@ -4,6 +4,9 @@ const clock = new THREE.Clock();
 let timer = 45; // Timer in seconds
 let gameOver = false;
 
+const hurtEffect = new Audio('../resources/hurt.mp3');
+const clangEffect = new Audio('../resources/clang.mp3');
+
 
 // Set up the scene, camera, and renderer
 const scene = new THREE.Scene();
@@ -199,6 +202,7 @@ function samuraiMove() {
 
         if (samuraiBox.intersectsBox(swordBox)) {
             console.log("Block!")
+            clangEffect.play();
             // Collision with player's cube
             samuraiMovingToPlayer = false; // Reset flag
             samuraiTarget.set(0, 0, -5); // Move back to origin position
@@ -216,6 +220,7 @@ function samuraiMove() {
         else if (samuraiBox.intersectsBox(playerBox)) {
             life--;
             console.log("Direct hit!")
+            hurtEffect.play();
             // Collision with player's cube
             samuraiMovingToPlayer = false; // Reset flag
             samuraiMovingToOrigin = true; // Set flag to move back to origin
@@ -284,7 +289,7 @@ function update(deltaTime) {
     }
     else{
         setTimeout(() => {
-          const gamePages = ["trace", "fruit_catch", 'moving_target'];
+          const gamePages = ["trace", "fruit_catch", 'moving_target', 'sorting'];
           const randomIndex = Math.floor(Math.random() * gamePages.length);
           const pageUrl = gamePages[randomIndex];
           window.location.href = pageUrl;
@@ -303,14 +308,21 @@ animate();
 
 // Update the sword's position based on mouse movement
 function updateSwordPosition(event) {
-  const mouseX = event.clientX;
-  const mouseY = event.clientY;
-  const swordPositionX = (mouseX / window.innerWidth) * 10 - 5; // Map mouse X position to range -1 to 1
-  const swordPositionY = -(mouseY / window.innerHeight) * 10 + 5; // Map mouse Y position to range -1 to 1
+    let mouseX, mouseY;
 
-  // Update the sword's position
-  sword.position.x = swordPositionX;
-  sword.position.y = swordPositionY;
+    if (event.type === 'mousemove') {
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+    } else if (event.type === 'touchmove') {
+        mouseX = event.touches[0].clientX;
+        mouseY = event.touches[0].clientY;
+    }
+    const swordPositionX = (mouseX / window.innerWidth) * 10 - 5; // Map mouse X position to range -1 to 1
+    const swordPositionY = -(mouseY / window.innerHeight) * 10 + 5; // Map mouse Y position to range -1 to 1
+
+    // Update the sword's position
+    sword.position.x = swordPositionX;
+    sword.position.y = swordPositionY;
 }
 
 // Add event listener for mouse movement

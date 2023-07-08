@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const startButton = document.querySelector('.start-button');
+    const overlay = document.querySelector('.overlay');
     const canvas = document.getElementById("gameCanvas");
     const context = canvas.getContext("2d");
   
@@ -83,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         displayResult("You Lose!");
       }
       setTimeout(() => {
-        const gamePages = ["moving_target", "fruit_catch", "samurai"];
+        const gamePages = ["moving_target", "fruit_catch", "samurai", "sorting"];
         const randomIndex = Math.floor(Math.random() * gamePages.length);
         const pageUrl = gamePages[randomIndex];
         window.location.href = pageUrl;
@@ -145,8 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
       context.closePath();
     }
   
-    draw();
-  
     // Countdown Timer
     let timeRemaining = timeLimit;
     const timerElement = document.getElementById("timer");
@@ -163,6 +163,11 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(updateTimer, 1000); // Update timer every second (1000 milliseconds)
       }
     }
+
+    startButton.addEventListener('click', function () {
+      overlay.style.display = 'none';
+      draw();
+    });
   
     setTimeout(updateTimer, 1000); // Start the timer
   });
