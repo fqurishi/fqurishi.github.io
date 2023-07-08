@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const canvas = document.getElementById("gameCanvas");
   const context = canvas.getContext("2d");
 
-  const catchEffect = new Audio('../resources/catch.mp3');
-  const bombEffect = new Audio('../resources/explode.mp3');
+  const catchEffect = new Audio('../pages/resources/catch.mp3');
+  const bombEffect = new Audio('../pages/resources/explode.mp3');
 
   // Set canvas dimensions to match the screen size
   canvas.width = window.innerWidth;
@@ -67,12 +67,14 @@ document.addEventListener("DOMContentLoaded", function () {
     if (gameover) return;
   
     // Move objects
-    for (let i = 0; i < objects.length; i++) {
+    for (let i = objects.length - 1; i >= 0; i--) {
       const object = objects[i];
+      if (!object) continue; // Skip iteration if object is undefined
+  
       object.y += objectSpeed;
   
       // Check if object is still within the game bounds
-      if (object && object.y && object.x) {
+      if (object.y && object.x) {
         // Check collision with catcher
         if (
           object.y + objectSize >= catcherY &&
@@ -87,14 +89,12 @@ document.addEventListener("DOMContentLoaded", function () {
             explode();
           }
           objects.splice(i, 1);
-          i--;
         }
       }
   
       // Check if object is off the screen
-      if (object && object.y && object.y > canvas.height) {
+      if (object.y && object.y > canvas.height) {
         objects.splice(i, 1);
-        i--;
       }
     }
   
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
       context.fillStyle = "black";
       context.font = "40px Arial";
       clearInterval(timerInterval);
-      if (score >= 25) {
+      if (score >= 12) {
         context.fillText("You Win!", canvas.width / 2 - 100, canvas.height / 2);
       } else {
         context.fillText("You Lose!", canvas.width / 2 - 100, canvas.height / 2);
