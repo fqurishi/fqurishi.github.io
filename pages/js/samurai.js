@@ -4,8 +4,8 @@ const clock = new THREE.Clock();
 let timer = 45; // Timer in seconds
 let gameOver = false;
 
-const hurtEffect = new Audio('../pages/resources/hurt.mp3');
-const clangEffect = new Audio('../pages/resources/clang.mp3');
+const hurtEffect = new Audio('../resources/hurt.mp3');
+const clangEffect = new Audio('../resources/clang.mp3');
 
 
 // Set up the scene, camera, and renderer
@@ -277,9 +277,14 @@ function update(deltaTime) {
             scene.remove(blockedText);
             // Display "Game Over!" text in the center
             if(life <= 0)
-                document.getElementById('gameOverText').textContent = 'You lose!';
-            else
+            {
+                document.getElementById('gameOverText').textContent = 'You Lose!';
+                document.getElementById('gameOverText').style.display = 'block';
+            }
+            else{
                 document.getElementById('gameOverText').textContent = 'You Win!'
+                document.getElementById('gameOverText').style.display = 'block';
+            }
         }
         // Update the timer text & life text
         document.getElementById('timerText').textContent = `Timer: ${Math.floor(timer)}`;
