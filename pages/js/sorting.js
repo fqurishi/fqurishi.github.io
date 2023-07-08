@@ -1,8 +1,8 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-const explodeEffect = new Audio('../resources/explode.mp3');
-const beepEffect = new Audio('../resources/beep.mp3');
+const explodeEffect = new Audio('../pages/resources/explode.mp3');
+const beepEffect = new Audio('../pages/resources/beep.mp3');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;

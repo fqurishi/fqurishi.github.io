@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const canvas = document.getElementById("gameCanvas");
     const context = canvas.getContext("2d");
 
-    const hitEffect = new Audio('../resources/bullet_hit.mp3');
-    const missEffect = new Audio('../resources/bullet_miss.mp3');
+    const hitEffect = new Audio('../pages/resources/bullet_hit.mp3');
+    const missEffect = new Audio('../pages/resources/bullet_miss.mp3');
   
     // Set canvas dimensions to match the screen size
     canvas.width = window.innerWidth;

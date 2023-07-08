@@ -4,8 +4,8 @@ const clock = new THREE.Clock();
 let timer = 45; // Timer in seconds
 let gameOver = false;
 
-const hurtEffect = new Audio('../resources/hurt.mp3');
-const clangEffect = new Audio('../resources/clang.mp3');
+const hurtEffect = new Audio('../pages/resources/hurt.mp3');
+const clangEffect = new Audio('../pages/resources/clang.mp3');
 
 
 // Set up the scene, camera, and renderer
