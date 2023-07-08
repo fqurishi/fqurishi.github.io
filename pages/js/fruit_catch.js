@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const canvas = document.getElementById("gameCanvas");
   const context = canvas.getContext("2d");
 
-  const catchEffect = new Audio('../pages/resources/catch.mp3');
-  const bombEffect = new Audio('../pages/resources/explode.mp3');
+  const catchEffect = new Audio('../resources/catch.mp3');
+  const bombEffect = new Audio('../resources/explode.mp3');
 
   // Set canvas dimensions to match the screen size
   canvas.width = window.innerWidth;
@@ -65,47 +65,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function update() {
     if (gameover) return;
-
+  
     // Move objects
     for (let i = 0; i < objects.length; i++) {
       const object = objects[i];
       object.y += objectSpeed;
-
-      // Check collision with catcher
-      if (
-        object.y + objectSize >= catcherY &&
-        object.x + objectSize >= catcherX &&
-        object.x <= catcherX + catcherWidth
-      ) {
-        if (object.catchable) {
-          catchEffect.play();
-          score++;
-        } else {
-          bombEffect.play();
-          explode();
+  
+      // Check if object is still within the game bounds
+      if (object && object.y && object.x) {
+        // Check collision with catcher
+        if (
+          object.y + objectSize >= catcherY &&
+          object.x + objectSize >= catcherX &&
+          object.x <= catcherX + catcherWidth
+        ) {
+          if (object.catchable) {
+            catchEffect.play();
+            score++;
+          } else {
+            bombEffect.play();
+            explode();
+          }
+          objects.splice(i, 1);
+          i--;
         }
-        objects.splice(i, 1);
-        i--;
       }
-
+  
       // Check if object is off the screen
-      if (object.y > canvas.height) {
+      if (object && object.y && object.y > canvas.height) {
         objects.splice(i, 1);
         i--;
       }
     }
-
+  
     // Generate new objects
     if (Math.random() < 0.02) {
       objects.push(generateRandomObject());
     }
-
+  
     // Update timer
     timer -= 1 / 60; // Subtract 1 second divided by 60 frames per second
     if (timer <= 0) {
       gameover = true;
     }
-  }
+  }  
 
   function draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
