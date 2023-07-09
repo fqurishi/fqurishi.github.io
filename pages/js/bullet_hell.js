@@ -22,7 +22,10 @@ let gameEnded = false;
 let lives = 1;
 
 canvas.addEventListener('mousemove', handleMouseMove);
-canvas.addEventListener('touchmove', handleMouseMove);
+canvas.addEventListener('touchmove', function(event) {
+    event.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
+    handleMouseMove(event);
+}, false);
 
 
 startGame();
