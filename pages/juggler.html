@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Juggler Game</title>
+  <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        #game-container { position: relative; }
+        #status-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 48px; font-weight: bold; color: white; }
+        #blockText {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #timerText {
+            position: absolute;
+            top: 40px;
+            left: 10px;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #lifeText {
+            position: absolute;
+            top: 70px;
+            left: 10px;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }   
+        .overlay .title-text {
+            font-family: Arial, sans-serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 24px;
+        }
+
+        .overlay .start-button {
+            padding: 16px 24px;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #000000;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="game-container"></div>
+    <div id="blockText">Juggle The Balls!</div>
+    <div id="timerText"></div>
+    <div id="lifeText"></div>
+    <div id="gameOverText"></div>
+    
+    <div class="overlay">
+        <div class="title-text">Juggle The Balls!</div>
+      <button class="start-button">Start</button>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/noisejs@2.1.0/index.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  <script>
+    // Handle the start button click event
+    document.querySelector('.start-button').addEventListener('click', function() {
+      // Load the script files and start the game
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = './js/juggler.js';
+      document.body.appendChild(script);
+      
+      // Hide the overlay
+      document.querySelector('.overlay').style.display = 'none';
+      const startSound = new Audio('../pages/resources/juggleballs.mp3');
+      startSound.play();
+    });
+  </script>
+</body>
+</html>

@@ -191,6 +191,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   startButton.addEventListener('click', function () {
     overlay.style.display = 'none';
+    const startSound = new Audio('../pages/resources/catchfruit.mp3');
+    startSound.play();
     gameLoop();
   });
 });

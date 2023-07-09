@@ -18,7 +18,7 @@ const bombColors = ['blue', 'green'];
 const containerColors = ['lightblue', 'lightgreen'];
 const bombSize = 30;
 const containerSize = 150;
-const explosionTime = 5; // Time in seconds
+const explosionTime = 7; // Time in seconds
 const blinkStartTime = 3; // Time in seconds
 const blinkInterval = 0.5; // Time in seconds
 

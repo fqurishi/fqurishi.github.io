@@ -48,12 +48,12 @@ function updateGame() {
     updateTimerDisplay();
   }
   else{
-    setTimeout(() => {
-        const gamePages = ["trace", "fruit_catch", "samurai", "sorting", "moving_target", "whack_mole"];
-        const randomIndex = Math.floor(Math.random() * gamePages.length);
-        const pageUrl = gamePages[randomIndex];
-        window.location.href = pageUrl;
-    }, 3000);
+    // setTimeout(() => {
+    //     const gamePages = ["trace", "fruit_catch", "samurai", "sorting", "moving_target", "whack_mole"];
+    //     const randomIndex = Math.floor(Math.random() * gamePages.length);
+    //     const pageUrl = gamePages[randomIndex];
+    //     window.location.href = pageUrl;
+    // }, 3000);
   }
 }
 
