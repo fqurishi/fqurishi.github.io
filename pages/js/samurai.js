@@ -294,7 +294,7 @@ function update(deltaTime) {
     }
     else{
         setTimeout(() => {
-          const gamePages = ["trace", "fruit_catch", 'moving_target', 'sorting'];
+          const gamePages = ["trace", "fruit_catch", 'moving_target', 'sorting', 'bullet_hell', 'whack_mole'];
           const randomIndex = Math.floor(Math.random() * gamePages.length);
           const pageUrl = gamePages[randomIndex];
           window.location.href = pageUrl;
@@ -332,4 +332,9 @@ function updateSwordPosition(event) {
 
 // Add event listener for mouse movement
 document.addEventListener('mousemove', updateSwordPosition, false);
-document.addEventListener('touchmove', updateSwordPosition, false);
+document.addEventListener('touchmove', function(event) {
+    event.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
+    updateSwordPosition(event);
+}, false);
+  
+  

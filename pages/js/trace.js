@@ -21,9 +21,18 @@ document.addEventListener("DOMContentLoaded", function () {
     canvas.addEventListener("mouseup", stopDrawing);
     canvas.addEventListener("mouseleave", stopDrawing);
 
-    canvas.addEventListener("touchstart", startDrawing);
-    canvas.addEventListener("touchmove", drawPath);
-    canvas.addEventListener("touchend", stopDrawing);
+    canvas.addEventListener("touchstart", function(event) {
+      event.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
+      startDrawing(event);
+    }, false);
+    canvas.addEventListener("touchmove", function(event) {
+      event.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
+      drawPath(event);
+    }, false);
+    canvas.addEventListener("touchend", function(event) {
+      event.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
+      stopDrawing(event);
+    }, false);
       
     function startDrawing(event) {
       if (gameover) return;
@@ -85,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
         displayResult("You Lose!");
       }
       setTimeout(() => {
-        const gamePages = ["moving_target", "fruit_catch", "samurai", "sorting"];
+        const gamePages = ["moving_target", "fruit_catch", "samurai", "sorting", 'bullet_hell', 'whack_mole'];
         const randomIndex = Math.floor(Math.random() * gamePages.length);
         const pageUrl = gamePages[randomIndex];
         window.location.href = pageUrl;

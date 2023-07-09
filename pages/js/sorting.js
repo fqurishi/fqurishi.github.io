@@ -9,7 +9,7 @@ canvas.height = window.innerHeight;
 
 let timer = 45; // Timer in seconds
 let gameOver = false;
-let lives = 3;
+let lives = 1;
 
 document.getElementById('timerText').textContent = `Timer: ${timer}`;
 document.getElementById('lifeText').textContent = `Life: ${lives}`;
@@ -29,9 +29,18 @@ canvas.addEventListener('mousedown', startDrag);
 canvas.addEventListener('mousemove', drag);
 canvas.addEventListener('mouseup', stopDrag);
 
-canvas.addEventListener('touchstart', startDrag);
-canvas.addEventListener('touchmove', drag);
-canvas.addEventListener('touchend', stopDrag);
+canvas.addEventListener('touchstart', function(event) {
+    event.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
+    startDrag(event);
+});
+canvas.addEventListener('touchmove', function(event) {
+    event.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
+    drag(event);
+});
+canvas.addEventListener('touchend', function(event) {
+    event.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
+    stopDrag(event);
+});
 
 let selectedBomb = null;
 let isDragging = false;
@@ -112,7 +121,12 @@ function createBomb() {
         // 10% chance of creating two bombs
         createSingleBomb(bombColor, container1, container2);
         createSingleBomb(bombColor, container1, container2);
-    } else {
+    }else if (Math.floor(Math.random() * 11) == 3) {
+        // 10% chance of creating two bombs
+        createSingleBomb(bombColor, container1, container2);
+        createSingleBomb(bombColor, container1, container2);
+        createSingleBomb(bombColor, container1, container2);
+    }  else {
         createSingleBomb(bombColor, container1, container2);
     }
 }
@@ -217,7 +231,7 @@ function drag(event) {
     selectedBomb.y = mouseY;
 }
 
-function stopDrag() {
+function stopDrag(event) {
     if (!isDragging) {
         return;
     }
@@ -225,8 +239,15 @@ function stopDrag() {
     selectedBomb.isDragging = false;
     isDragging = false;
 
-    const mouseX = event.clientX - canvas.offsetLeft;
-    const mouseY = event.clientY - canvas.offsetTop;
+    let mouseX, mouseY;
+
+    if (event.type === 'mouseup') {
+        mouseX = event.clientX - canvas.offsetLeft;
+        mouseY = event.clientY - canvas.offsetTop;
+    } else if (event.type === 'touchend') {
+        mouseX = event.touches[0].clientX - canvas.offsetLeft;
+        mouseY = event.touches[0].clientY - canvas.offsetTop;
+    }
 
     const container1 = containers[0];
     const container2 = containers[1];
@@ -282,7 +303,7 @@ function updateGame() {
     }
     else{
         setTimeout(() => {
-            const gamePages = ["moving_target", "trace", "samurai", "fruit_catch"];
+            const gamePages = ["moving_target", "trace", "samurai", "fruit_catch", 'bullet_hell', 'whack_mole'];
             const randomIndex = Math.floor(Math.random() * gamePages.length);
             const pageUrl = gamePages[randomIndex];
             window.location.href = pageUrl;
@@ -317,5 +338,5 @@ function showGameOver(text) {
 }
 
 startGame();
-const bombCreationInterval = setInterval(createBomb, 1800);
+const bombCreationInterval = setInterval(createBomb, 1750);
   

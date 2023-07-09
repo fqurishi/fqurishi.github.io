@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
           canvas.height / 2
         );
         setTimeout(() => {
-          const gamePages = ["trace", "fruit_catch", "samurai", "sorting"];
+          const gamePages = ["trace", "fruit_catch", "samurai", "sorting", 'bullet_hell', 'whack_mole'];
           const randomIndex = Math.floor(Math.random() * gamePages.length);
           const pageUrl = gamePages[randomIndex];
           window.location.href = pageUrl;

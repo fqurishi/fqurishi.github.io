@@ -29,7 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let timerInterval;
 
   canvas.addEventListener("mousemove", moveCatcher);
-  canvas.addEventListener("touchmove", moveCatcher);
+  canvas.addEventListener('touchmove', function(event) {
+    event.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
+    moveCatcher(event);
+  }, false);
 
   function moveCatcher(event) {
     let daX;
@@ -156,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       setTimeout(() => {
-        const gamePages = ["moving_target", "trace", "samurai", "sorting"];
+        const gamePages = ["moving_target", "trace", "samurai", "sorting", 'bullet_hell', 'whack_mole'];
         const randomIndex = Math.floor(Math.random() * gamePages.length);
         const pageUrl = gamePages[randomIndex];
         window.location.href = pageUrl;
