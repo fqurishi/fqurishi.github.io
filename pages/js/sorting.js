@@ -313,7 +313,7 @@ function updateGame() {
 }
   
 function updateTimer() {
-    if (timer > 0 && lives >= 0) {
+    if (timer > 0 && lives > 0) {
         timer--;
         document.getElementById('timerText').textContent = `Timer: ${timer}`;
     } else {

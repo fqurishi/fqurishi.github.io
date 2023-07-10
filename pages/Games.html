@@ -5,68 +5,155 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="icon" type="image/ico" href="https://raw.githubusercontent.com/fqurishi/fqurishi.github.io/master/images/icon.ico">
+<link rel="icon" type="image/ico"
+  href="https://raw.githubusercontent.com/fqurishi/fqurishi.github.io/master/images/icon.ico">
 <style>
-body { height:100%; font-family: "Lato", sans-serif; background-color: #000;}
-.tablink { background-color: #000; color: white; }
-.tablink:hover { background-color: #3E3D3D; }
-#PROJECTS {background-color: black;}
-#CONTACT {background-color: black;}
-#ABOUT {background-color: black;}
-#HOME {background-color: black;}
+  body {
+    height: 100%;
+    font-family: "Lato", sans-serif;
+    background-color: #000;
+  }
 
-/* background */
-.bg {
+  .tablink {
+    background-color: #000;
+    color: white;
+  }
 
-		height: 100%;
-		width: 100%;
+  .tablink:hover {
+    background-color: #3E3D3D;
+  }
 
-		/* Center and scale the image nicely */
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-}
+  #PROJECTS {
+    background-color: black;
+  }
 
+  #CONTACT {
+    background-color: black;
+  }
+
+  #ABOUT {
+    background-color: black;
+  }
+
+  #HOME {
+    background-color: black;
+  }
+
+  /* background */
+  .bg {
+
+    height: 100%;
+    width: 100%;
+
+    /* Center and scale the image nicely */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 </style>
+
 <body style="background-color: black;">
-<div class = "w3-black">
+  <div class="w3-black">
 
-<!-- Navbar  -->
-<div class="w3-top w3-center">
-  <div class="w3-bar w3-black w3-card">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"></a>
-	<button class="tablink" onclick="window.location.href='../';">HOME</button>
-	<button class="tablink" onclick="location.href='https://faislqurishi.dev/pages/About';">ABOUT</button>
-	<button class="tablink" onclick="location.href='https://faislqurishi.dev/pages/Contact';">CONTACT</button>
-	<button class="tablink" onclick="location.href='https://faislqurishi.dev/pages/Projects';">PROJECTS</button>
-  </div>
-</div>
+    <!-- Navbar  -->
+    <div class="w3-top w3-center">
+      <div class="w3-bar w3-black w3-card">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+          href="javascript:void(0)" title="Toggle Navigation Menu"></a>
+        <button class="tablink" onclick="window.location.href='../';">HOME</button>
+        <button class="tablink" onclick="location.href='https://faislqurishi.dev/pages/About';">ABOUT</button>
+        <button class="tablink" onclick="location.href='https://faislqurishi.dev/pages/Contact';">CONTACT</button>
+        <button class="tablink" onclick="location.href='https://faislqurishi.dev/pages/Projects';">PROJECTS</button>
+      </div>
+    </div>
 
 
-<!-- Page content -->
+    <!-- Page content -->
 
-<!-- The GAMES Section -->
+    <!-- The GAMES Section -->
     <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
       <h2 class="w3-wide w3-center">GAMES</h2>
       <p class="w3-opacity w3-center"><i>A look at some of my games, (click to play them)</i></p><br>
       <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
         <div class="w3-third w3-margin-bottom">
           <a href="https://outbreak2d.com">
-              <img src="/images/outbreak.gif" alt="OutBreak2D" style="width:100%" class="w3-hover-opacity">
+            <img src="/images/outbreak3D.gif" alt="OutBreak2D" style="width:100%" class="w3-hover-opacity">
           </a>
-              <div class="w3-container w3-white">
-                <p><b>(IN-PROGRESS) OutBreak: BioHazard Containment (JavaScript 2D Game)</b></p>
-                <p>Ongoing project creating a 2D game using ThreeJS. Hosted on my own Ubuntu server. Multiplayer being developed. ONGOING</p>
-              </div>
-            </div>
-		<div class="w3-third w3-margin-bottom">
-		  <a href="http://76.29.169.184:8080/">
-          <img src="/images/outbreak3D.gif" alt="OutBreak 3D JS" style="width:100%" class="w3-hover-opacity">
-		  </a>
           <div class="w3-container w3-white">
-            <p><b>(IN-PROGRESS) OutBreak JS Edition (JavaScript 3D Game)</b></p>
-            <p>Ongoing project to recreate my original 8bit retro styled game Outbreak into 3D using JavaScript with Threejs.
-               Currently demo-ing character control with chase camera implemented. ON HOLD</p>
+            <p><b>(IN-PROGRESS) OutBreak2D</b></p>
+            <p>Ongoing project creating a 2D game using ThreeJS.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <a href="https://outbreak3d.com/">
+            <img src="/images/outbreak3D.gif" alt="OutBreak 3D JS" style="width:100%" class="w3-hover-opacity">
+          </a>
+          <div class="w3-container w3-white">
+            <p><b>(IN-PROGRESS) OutBreak3D</b></p>
+            <p>Ongoing project to recreate my original 8bit retro styled game Outbreak into 3D.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <a href="https://faislqurishi.dev/pages/bullet_hell">
+            <img src="/images/outbreak3D.gif" alt="Bullet_Hell" style="width:100%" class="w3-hover-opacity">
+          </a>
+          <div class="w3-container w3-white">
+            <p><b>Survive The Bullet Hell!</b></p>
+            <p>2D game using html canvas and vanilla javascript. Survive the time limit to win.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <a href="https://faislqurishi.dev/pages/samurai">
+            <img src="/images/outbreak3D.gif" alt="Block_Red" style="width:100%" class="w3-hover-opacity">
+          </a>
+          <div class="w3-container w3-white">
+            <p><b>Block The Red!</b></p>
+            <p>3D game using threejs. Survive the time limit without losing all your lives to win.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <a href="https://faislqurishi.dev/pages/fruit_catch">
+            <img src="/images/outbreak3D.gif" alt="Fruit_Catch" style="width:100%" class="w3-hover-opacity">
+          </a>
+          <div class="w3-container w3-white">
+            <p><b>Catch The Fruit!</b></p>
+            <p>2D game using html canvas and vanilla javascript. Catch more than 12 fruit to win, watch out for bombs.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <a href="https://faislqurishi.dev/pages/sorting">
+            <img src="/images/outbreak3D.gif" alt="Bomb_Sort" style="width:100%" class="w3-hover-opacity">
+          </a>
+          <div class="w3-container w3-white">
+            <p><b>Sort The Bombs!</b></p>
+            <p>2D game using html canvas and vanilla javascript. Survive the time limit to win, no bombs can explode.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <a href="https://faislqurishi.dev/pages/juggler">
+            <img src="/images/outbreak3D.gif" alt="Juggler" style="width:100%" class="w3-hover-opacity">
+          </a>
+          <div class="w3-container w3-white">
+            <p><b>Juggle The Balls!</b></p>
+            <p>2D game using html canvas and vanilla javascript. Survive the time limit to win, you can only drop 3 balls.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <a href="https://faislqurishi.dev/pages/moving_target">
+            <img src="/images/outbreak3D.gif" alt="Moving_Target" style="width:100%" class="w3-hover-opacity">
+          </a>
+          <div class="w3-container w3-white">
+            <p><b>Shoot The Target!</b></p>
+            <p>2D game using html canvas and vanilla javascript. Shoot the target more than 10 times within the time limit to win.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <a href="https://faislqurishi.dev/pages/whack_mole">
+            <img src="/images/outbreak3D.gif" alt="Whack_Mole" style="width:100%" class="w3-hover-opacity">
+          </a>
+          <div class="w3-container w3-white">
+            <p><b>Whack a Monkey!</b></p>
+            <p>2D game using html canvas and vanilla javascript. Whack the monkeys for a score of 25 or more to win.</p>
           </div>
         </div>
       </div>
@@ -75,8 +162,9 @@ body { height:100%; font-family: "Lato", sans-serif; background-color: #000;}
 
 
 
-<!-- End Page Content -->
-</div>
+    <!-- End Page Content -->
+  </div>
 
 </body>
+
 </html>
