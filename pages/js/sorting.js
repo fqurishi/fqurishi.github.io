@@ -303,10 +303,19 @@ function updateGame() {
     }
     else{
         setTimeout(() => {
-            const gamePages = ["moving_target", "trace", "samurai", "fruit_catch", 'bullet_hell', 'whack_mole'];
-            const randomIndex = Math.floor(Math.random() * gamePages.length);
-            const pageUrl = gamePages[randomIndex];
-            window.location.href = pageUrl;
+            const overlay = document.getElementById("overlay_end");
+            const playAgainButton = document.getElementById("play-again-button");
+            const seeMoreGamesButton = document.getElementById("see-more-games-button");
+            overlay.style.display = "flex";
+      
+            // Button event listeners
+            playAgainButton.addEventListener("click", () => {
+              window.location.reload(); // Reload the page to play again
+            });
+      
+            seeMoreGamesButton.addEventListener("click", () => {
+              window.location.href = "https://faislqurishi.dev/pages/Games"; // Navigate to the "See More Games" link
+            });
           }, 3000);
     }
 

@@ -13,8 +13,8 @@ const moleRadius = 25;
 const gap = 10;
 const molesPerRow = 4;
 const numRows = 5;
-const moleInterval = 850; // Time interval in milliseconds for mole appearance
-const moleDuration = 990; // Duration in milliseconds for mole visibility
+const moleInterval = 1500; // Time interval in milliseconds for mole appearance
+const moleDuration = 1500; // Duration in milliseconds for mole visibility
 const timerDuration = 45; // Timer duration in seconds
 const scoreToWin = 25; // Score required to win
 let timerInterval;
@@ -38,12 +38,18 @@ function startGame() {
         updateTimerDisplay();
         timerInterval = setInterval(updateTimer, 1000);
         createInterval = setInterval(createMolesAndMen, moleInterval);
-        holeInterval = setInterval(drawHoles, moleInterval)
     }
 }
 
 function updateTimer() {
   if (timer > 0) {
+    holes.forEach(hole => {
+      hole.moleTime--;
+      if (hole.moleTime < 0){
+        hole.moleTimeout = true;
+        drawHoles();
+      }
+    });
     timer--;
     updateTimerDisplay();
   } else {
@@ -64,7 +70,8 @@ function createHoles() {
         y: offsetY + row * holeDiameter + holeRadius,
         isMole: false,
         isMan: false,
-        moleTimeout: null,
+        moleTimeout: false,
+        moleTime: 2,
       };
 
       holes.push(hole);
@@ -90,6 +97,11 @@ function drawHoles() {
       ctx.textAlign = 'center';
       ctx.fillText('👴', hole.x, hole.y + 10);
     }
+
+    if (hole.moleTimeout == true){
+      hole.isMan = false;
+      hole.isMole = false;
+    }
   });
 }
 
@@ -110,6 +122,7 @@ function createMolesAndMen() {
         }
         }
     }
+    drawHoles();
 }
   
 function getRandomInt(min, max) {
@@ -119,18 +132,14 @@ function getRandomInt(min, max) {
 
 function createMole(hole) {
   hole.isMole = true;
-  hole.moleTimeout = setTimeout(() => {
-    hole.isMole = false;
-    hole.moleTimeout = null;
-  }, moleDuration);
+  hole.moleTime = 2;
+  hole.moleTimeout = false;
 }
 
 function createMan(hole) {
   hole.isMan = true;
-  hole.moleTimeout = setTimeout(() => {
-    hole.isMan = false;
-    hole.moleTimeout = null;
-  }, moleDuration);
+  hole.moleTime = 2;
+  hole.moleTimeout = false;
 }
 
 function whackMole(event) {
@@ -149,8 +158,8 @@ function whackMole(event) {
       distance(mouseX, mouseY, hole.x, hole.y) <= moleRadius
     ) {
         monkeyEffect.play();
-        hole.isMole = false;
-        hole.moleTimeout = null;
+        hole.moleTime = 0;
+        hole.moleTimeout = true;
         drawHoles();
         score++;
         updateScore();
@@ -160,12 +169,15 @@ function whackMole(event) {
       distance(mouseX, mouseY, hole.x, hole.y) <= holeRadius
     ) {
         owEffect.play();
-        hole.isMan = false;
-        hole.moleTimeout = null;
+        hole.moleTime = 0;
+        hole.moleTimeout = true;
         drawHoles();
         score = score - 5;
         updateScore();
         return;
+    }
+    else{
+      console.log(hole)
     }
   }
 }
@@ -195,10 +207,19 @@ function endGame(message) {
         canvas.height / 2
     );
     setTimeout(() => {
-        const gamePages = ["trace", "fruit_catch", "samurai", "sorting", "moving_target", 'bullet_hell'];
-        const randomIndex = Math.floor(Math.random() * gamePages.length);
-        const pageUrl = gamePages[randomIndex];
-        window.location.href = pageUrl;
+      const overlay = document.getElementById("overlay_end");
+      const playAgainButton = document.getElementById("play-again-button");
+      const seeMoreGamesButton = document.getElementById("see-more-games-button");
+      overlay.style.display = "flex";
+
+      // Button event listeners
+      playAgainButton.addEventListener("click", () => {
+        window.location.reload(); // Reload the page to play again
+      });
+
+      seeMoreGamesButton.addEventListener("click", () => {
+        window.location.href = "https://faislqurishi.dev/pages/Games"; // Navigate to the "See More Games" link
+      });
     }, 3000);
 }
 
